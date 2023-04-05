@@ -1,4 +1,4 @@
-package at.fhtw.todolist.model;
+package at.fhtw.app.model;
 
 public class Tour {
     private Integer id;

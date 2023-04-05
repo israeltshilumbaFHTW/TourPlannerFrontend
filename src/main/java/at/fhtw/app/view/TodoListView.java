@@ -1,6 +1,6 @@
-package at.fhtw.todolist.view;
+package at.fhtw.app.view;
 
-import at.fhtw.todolist.model.Tour;
+import at.fhtw.app.model.Tour;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;

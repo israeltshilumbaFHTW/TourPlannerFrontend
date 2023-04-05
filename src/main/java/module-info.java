@@ -3,8 +3,8 @@ module at.fhtw.todolist {
     requires javafx.fxml;
 
 
-    opens at.fhtw.todolist.view to javafx.fxml;
-    opens at.fhtw.todolist.model to javafx.base;
-    exports at.fhtw.todolist.view to javafx.fxml;
-    exports at.fhtw.todolist to javafx.graphics;
+    opens at.fhtw.app.view to javafx.fxml;
+    opens at.fhtw.app.model to javafx.base;
+    exports at.fhtw.app.view to javafx.fxml;
+    exports at.fhtw.app to javafx.graphics;
 }
