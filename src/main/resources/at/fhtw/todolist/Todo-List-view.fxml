@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhtw.todolist.view.TodoListView">
+   <children>
+      <TableView fx:id="tourTable" layoutX="138.0" layoutY="119.0" prefHeight="200.0" prefWidth="299.0">
+        <columns>
+          <TableColumn fx:id="colTourFrom" prefWidth="75.0" text="From" />
+          <TableColumn fx:id="colTourTo" prefWidth="75.0" text="To" />
+            <TableColumn fx:id="colTourDistance" prefWidth="75.0" text="Distance" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
