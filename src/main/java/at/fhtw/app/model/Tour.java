@@ -2,15 +2,23 @@ package at.fhtw.app.model;
 
 public class Tour {
     private Integer id;
-    private String from;
-    private String to;
-    private Integer distance;
+    private String name;
+    private String description;
+    private String fromLocation;
+    private String toLocation;
+    private String transportType;
+    private Double distance;
+    private Double estimatedTime;
 
-    public Tour(Integer id, String from, String to, Integer distance) {
+    public Tour(Integer id, String name, String description, String fromLocation, String toLocation, String transportType, Double distance, Double estimatedTime) {
         this.id = id;
-        this.from = from;
-        this.to = to;
+        this.name = name;
+        this.description = description;
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.transportType = transportType;
         this.distance = distance;
+        this.estimatedTime = estimatedTime;
     }
 
     public Integer getId() {
@@ -21,27 +29,59 @@ public class Tour {
         this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public String getName() {
+        return name;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFrom() {
+        return fromLocation;
+    }
+
+    public void setFrom(String fromLocation) {
+        this.fromLocation = fromLocation;
     }
 
     public String getTo() {
-        return to;
+        return toLocation;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setTo(String toLocation) {
+        this.toLocation = toLocation;
     }
 
-    public Integer getDistance() {
+    public String getTransportType() {
+        return transportType;
+    }
+
+    public void setTransportType(String transportType) {
+        this.transportType = transportType;
+    }
+
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Integer distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
+    }
+
+    public Double getTime() {
+        return estimatedTime;
+    }
+
+    public void setTime(Double estimatedTime) {
+        this.estimatedTime = estimatedTime;
     }
 }
