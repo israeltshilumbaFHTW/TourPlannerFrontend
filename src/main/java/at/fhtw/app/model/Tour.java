@@ -1,5 +1,7 @@
 package at.fhtw.app.model;
 
+import java.util.Date;
+
 public class Tour {
     private Integer id;
     private String name;
@@ -9,8 +11,9 @@ public class Tour {
     private String transportType;
     private Double distance;
     private Double estimatedTime;
+    private String date;
 
-    public Tour(Integer id, String name, String description, String fromLocation, String toLocation, String transportType, Double distance, Double estimatedTime) {
+    public Tour(Integer id, String name, String description, String fromLocation, String toLocation, String transportType, Double distance, Double estimatedTime, String date) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -19,6 +22,7 @@ public class Tour {
         this.transportType = transportType;
         this.distance = distance;
         this.estimatedTime = estimatedTime;
+        this.date = date;
     }
 
     public Integer getId() {
@@ -84,4 +88,13 @@ public class Tour {
     public void setTime(Double estimatedTime) {
         this.estimatedTime = estimatedTime;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
+

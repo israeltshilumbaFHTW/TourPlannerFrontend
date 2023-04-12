@@ -25,6 +25,7 @@ public class TourApi {
         HttpGet request = new HttpGet(this.END_POINT);
         List<Tour> tourList = new ArrayList<>();
 
+        //jackspi client, jersey client, springboot client
         try {
             HttpResponse response = client.execute(request);
             String responseBody = EntityUtils.toString(response.getEntity());
@@ -41,7 +42,8 @@ public class TourApi {
                         tourObject.getString("toLocation"),
                         tourObject.getString("transportType"),
                         tourObject.getDouble("distance"),
-                        tourObject.getDouble("estimatedTime")
+                        tourObject.getDouble("estimatedTime"),
+                        tourObject.getString("date")
                 );
                 tourList.add(tour);
             }
@@ -50,7 +52,4 @@ public class TourApi {
         }
         return tourList;
     }
-
-
-
 }

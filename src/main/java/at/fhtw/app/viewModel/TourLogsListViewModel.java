@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class TourListViewModel {
+public class TourLogsListViewModel {
     private TourApi tourApi = new TourApi();
 
     private ObservableList<Tour> tourList = FXCollections.observableArrayList();
