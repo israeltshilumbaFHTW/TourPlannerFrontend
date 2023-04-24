@@ -4,19 +4,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhtw.app.view.TourLogsListView">
-   <children>
-      <TableView fx:id="tourTable" layoutX="4.0" layoutY="42.0" prefHeight="516.0">
-        <columns>
-            <TableColumn fx:id="colTourDate" minWidth="-Infinity" prefWidth="221.0" resizable="false" text="date" />
-            <!--<TableColumn fx:id="colTourId" prefWidth="39.0" text="id" /> -->
-            <TableColumn fx:id="colTourName" prefWidth="99.0" text="name" />
-            <!--<TableColumn fx:id="colTourDescription" prefWidth="142.0" text="description" />
-            <TableColumn fx:id="colTourFrom" prefWidth="133.0" text="from" />
-            <TableColumn fx:id="colTourTo" prefWidth="164.0" text="to" />-->
-            <TableColumn fx:id="colTourDistance" minWidth="-Infinity" prefWidth="255.0" text="distance" />
-            <TableColumn fx:id="colTourTime" minWidth="-Infinity" prefWidth="169.0" text="time" /><!-- change name to duration -->
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhtw.app.viewModel.TourLogsListViewModel">
+    <children>
+        <TableView prefHeight="126.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="Date" />
+                <TableColumn prefWidth="75.0" text="Duration" />
+                <TableColumn prefWidth="75.0" text="Distance" />
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>

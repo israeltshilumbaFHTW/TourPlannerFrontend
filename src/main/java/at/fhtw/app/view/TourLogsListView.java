@@ -22,7 +22,6 @@ public class TourLogsListView implements Initializable {
     private TableColumn<Tour, Integer> colTourTime;
     @javafx.fxml.FXML
     private TableColumn<Tour, String> colTourDate;
-
     @Override
     public void initialize(URL location, ResourceBundle rb) {
 

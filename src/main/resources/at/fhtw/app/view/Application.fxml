@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -66,23 +64,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <SplitPane dividerPositions="0.10738255033557047" orientation="VERTICAL" prefHeight="300.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="172.0" SplitPane.resizableWithParent="false">
-                                       <children>
-                                          <Label layoutY="5.0" text="Tours" />
-                                          <Button layoutX="94.0" layoutY="1.0" mnemonicParsing="false" text="..." AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="0.0" />
-                                          <Button layoutX="121.0" layoutY="1.0" mnemonicParsing="false" text="-" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="0.0" />
-                                          <Button layoutX="145.0" layoutY="1.0" mnemonicParsing="false" text="+" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                       <children>
-                                          <ListView prefHeight="262.0" prefWidth="172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                </items>
-                              </SplitPane>
+                               <fx:include source="Tours-List.fxml" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -125,9 +107,10 @@
                                                       </ImageView>
                                                    </children>
                                                 </AnchorPane>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                <fx:include source="Tour-Logs-List-view.fxml"/>
+                                              <!--<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <TableView prefHeight="126.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <TableView fx:id="tour_logs_table_view" prefHeight="126.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                         <columns>
                                                           <TableColumn prefWidth="75.0" text="Date" />
                                                           <TableColumn prefWidth="75.0" text="Duration" />
@@ -135,7 +118,7 @@
                                                         </columns>
                                                       </TableView>
                                                    </children>
-                                                </AnchorPane>
+                                              </AnchorPane>-->
                                             </items>
                                           </SplitPane>
                                        </children>

@@ -10,4 +10,5 @@ module at.fhtw.todolist {
     opens at.fhtw.app.model to javafx.base;
     exports at.fhtw.app.view to javafx.fxml;
     exports at.fhtw.app to javafx.graphics;
+    exports at.fhtw.app.viewModel to javafx.fxml;
 }

@@ -5,12 +5,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="269.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhtw.app.view.ToursList">
-   <children>
-      <TableView prefHeight="400.0" prefWidth="269.0">
-        <columns>
-          <TableColumn fx:id="colTours" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="268.0" text="Tours" />
-        </columns>
-      </TableView>
-   </children>
-</AnchorPane>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+
+<SplitPane dividerPositions="0.10738255033557047" orientation="VERTICAL" prefHeight="300.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="172.0" SplitPane.resizableWithParent="false">
+            <children>
+                <Label layoutY="5.0" text="Tours" />
+                <Button layoutX="94.0" layoutY="1.0" mnemonicParsing="false" text="+" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="0.0" />
+                <Button layoutX="121.0" layoutY="1.0" mnemonicParsing="false" text="-" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="0.0" />
+                <Button layoutX="145.0" layoutY="1.0" mnemonicParsing="false" text="..." AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <children>
+                <ListView prefHeight="262.0" prefWidth="172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>
