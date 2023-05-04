@@ -81,11 +81,11 @@ public class Tour {
         this.distance = distance;
     }
 
-    public Double getTime() {
+    public Double getEstimatedTime() {
         return estimatedTime;
     }
 
-    public void setTime(Double estimatedTime) {
+    public void setEstimatedTime(Double estimatedTime) {
         this.estimatedTime = estimatedTime;
     }
 

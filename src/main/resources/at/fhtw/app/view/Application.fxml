@@ -98,6 +98,7 @@
                                        <children>
                                           <SplitPane dividerPositions="0.5846153846153846" orientation="VERTICAL" prefHeight="262.0" prefWidth="412.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
+                                                <fx:include source="Tour-Image.fxml"/><!--
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
                                                    <children>
                                                       <ImageView fitHeight="133.0" fitWidth="410.0" layoutY="-6.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -106,7 +107,7 @@
                                                          </image>
                                                       </ImageView>
                                                    </children>
-                                                </AnchorPane>
+                                                </AnchorPane> -->
                                                 <fx:include source="Tour-Logs-List-view.fxml"/>
                                               <!--<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>

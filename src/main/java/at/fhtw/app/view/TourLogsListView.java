@@ -8,31 +8,33 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class TourLogsListView implements Initializable {
+    //displayed as: Date | Duration | Distance
 
     public TourLogsListViewModel tourLogsListViewModel = new TourLogsListViewModel();
     @javafx.fxml.FXML
-    private TableView<Tour> tourTable;
-    public TableColumn<Tour,String> colTourName;
+    public TableView<Tour> tourLogsTable;
     @javafx.fxml.FXML
-    private TableColumn<Tour, Integer> colTourDistance;
+    public TableColumn<Tour, String> colTourDate;
     @javafx.fxml.FXML
-    private TableColumn<Tour, Integer> colTourTime;
+    private TableColumn<Tour, Double> colTourDuration;
     @javafx.fxml.FXML
-    private TableColumn<Tour, String> colTourDate;
+    private TableColumn<Tour, Double> colTourDistance;
+
     @Override
     public void initialize(URL location, ResourceBundle rb) {
 
 
-        tourTable.setItems(tourLogsListViewModel.getTourList()); //gets Datatype "Tour"
-        tourTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tourLogsTable.setItems(tourLogsListViewModel.getTourList()); //gets Datatype "Tour"
+        tourLogsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        colTourName.setCellValueFactory(new PropertyValueFactory<Tour, String>("name"));
+
         colTourDate.setCellValueFactory(new PropertyValueFactory<Tour, String>("date")); //name of variable in Tour
-        colTourDistance.setCellValueFactory(new PropertyValueFactory<Tour, Integer>("distance"));
-        colTourTime.setCellValueFactory(new PropertyValueFactory<Tour, Integer>("time"));
+        colTourDistance.setCellValueFactory(new PropertyValueFactory<Tour, Double>("distance"));
+        colTourDuration.setCellValueFactory(new PropertyValueFactory<Tour, Double>("estimatedTime"));
 
     }
 }
