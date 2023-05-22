@@ -8,12 +8,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhtw.app.view.TourListView">
-    <children>
-        <Label layoutX="46.0" layoutY="86.0" text="Name:"/>
-        <TextField fx:id="formName" layoutX="148.0" layoutY="81.0"/>
-        <Label layoutX="46.0" layoutY="135.0" text="Description:"/>
-        <TextField fx:id="formDescription" layoutX="148.0" layoutY="130.0"/>
-        <Button fx:id="formSubmitButton" onAction="#addTour" layoutX="46.0" layoutY="200.0" mnemonicParsing="false"
-                text="Add Tour"/>
-    </children>
+    <Label layoutX="46.0" layoutY="86.0" text="Name:"/>
+    <TextField fx:id="formName" layoutX="148.0" layoutY="81.0"/>
+    <Label layoutX="46.0" layoutY="135.0" text="Description:"/>
+    <TextField fx:id="formDescription" layoutX="148.0" layoutY="130.0"/>
+    <Button fx:id="formSubmitButton" onAction="#addTour" layoutX="46.0" layoutY="200.0" mnemonicParsing="false"
+            text="Add Tour"/>
 </AnchorPane>

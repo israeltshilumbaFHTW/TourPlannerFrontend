@@ -8,12 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TourListView {
     public TourListViewModel tourListViewModel = new TourListViewModel();
+    public AnchorPane tourForm;
 
     //Form Components
     @FXML
@@ -33,6 +35,7 @@ public class TourListView {
     public void addTourFormShow(ActionEvent event) {
         //make TourList invisible
         tourList.setVisible(false);
+        tourForm.setVisible(true);
         System.out.println("Button clicked: startForm");
     }
 
