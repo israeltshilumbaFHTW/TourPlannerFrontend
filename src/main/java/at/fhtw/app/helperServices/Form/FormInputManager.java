@@ -1,5 +1,6 @@
 package at.fhtw.app.helperServices.Form;
 
+import at.fhtw.app.helperServices.Enums.FormMessages;
 import at.fhtw.app.model.FormTour;
 
 public class FormInputManager {

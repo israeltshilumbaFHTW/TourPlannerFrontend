@@ -1,22 +1,29 @@
 package at.fhtw.app.model;
 
-import org.apache.http.entity.SerializableEntity;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
 import java.io.Serializable;
 
 public class FormTour implements Serializable {
+    @JsonAlias({"name"})
     private String name;
+    @JsonAlias({"description"})
     private String description;
-    private String from;
-    private String to;
+    @JsonAlias({"from_location"})
+    private String from_location;
+    @JsonAlias({"to_location"})
+    private String to_location;
+
+    @JsonAlias({"transport_type"})
     private String transportType;
+    @JsonAlias({"route_information"})
     private String routeInformation;
 
-    public FormTour(String name, String description, String from, String to, String transportType, String routeInformation) {
+    public FormTour(String name, String description, String from_location, String to_location, String transportType, String routeInformation) {
         this.name = name;
         this.description = description;
-        this.from = from;
-        this.to = to;
+        this.from_location = from_location;
+        this.to_location = to_location;
         this.transportType = transportType;
         this.routeInformation = routeInformation;
     }
@@ -38,20 +45,20 @@ public class FormTour implements Serializable {
         this.description = description;
     }
 
-    public String getFrom() {
-        return from;
+    public String getFromLocation() {
+        return from_location;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFromLocation(String from_location) {
+        this.from_location = from_location;
     }
 
-    public String getTo() {
-        return to;
+    public String getToLocation() {
+        return this.to_location;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setToLocation(String from_to) {
+        this.to_location = to_location;
     }
 
     public String getTransportType() {
@@ -69,4 +76,5 @@ public class FormTour implements Serializable {
     public void setRouteInformation(String routeInformation) {
         this.routeInformation = routeInformation;
     }
+
 }

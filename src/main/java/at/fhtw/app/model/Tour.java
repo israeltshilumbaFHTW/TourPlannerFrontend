@@ -1,5 +1,7 @@
 package at.fhtw.app.model;
 
+import at.fhtw.app.backendApi.TourApi;
+
 import java.util.Date;
 
 public class Tour {
@@ -12,6 +14,9 @@ public class Tour {
     private Double distance;
     private Double estimatedTime;
     private String date;
+
+    public Tour() {
+    }
 
     public Tour(Integer id, String name, String description, String fromLocation, String toLocation, String transportType, Double distance, Double estimatedTime, String date) {
         this.id = id;

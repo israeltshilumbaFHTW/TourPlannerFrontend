@@ -1,23 +1,21 @@
 package at.fhtw.app.view;
 
 import at.fhtw.app.helperServices.Form.FormInputManager;
-import at.fhtw.app.helperServices.Form.FormMessages;
-import at.fhtw.app.helperServices.Form.FormValidator;
+import at.fhtw.app.helperServices.Enums.FormMessages;
 import at.fhtw.app.model.FormTour;
+import at.fhtw.app.viewModel.TourFormViewModel;
 import at.fhtw.app.viewModel.TourListViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class TourListView {
     public TourListViewModel tourListViewModel = new TourListViewModel();
+    public TourFormViewModel tourFormViewModel = new TourFormViewModel();
     public FormInputManager formInputManager = new FormInputManager();
 
     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -51,6 +49,8 @@ public class TourListView {
             //post them to DB
             System.out.print("VALID INPUT");
             System.out.printf(validationString);
+
+            tourFormViewModel.postTour(formTour);
             successPrompt.setTitle("Tour has been added");
             successPrompt.setContentText(FormMessages.FORM_ADDED.getMessage());
             successPrompt.setHeaderText("");

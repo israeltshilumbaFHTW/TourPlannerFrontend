@@ -4,6 +4,7 @@ module at.fhtw.todolist {
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
     requires org.json;
+    requires com.fasterxml.jackson.databind;
 
 
     opens at.fhtw.app.view to javafx.fxml;
@@ -12,4 +13,6 @@ module at.fhtw.todolist {
     exports at.fhtw.app to javafx.graphics;
     exports at.fhtw.app.viewModel to javafx.fxml;
     exports at.fhtw.app.helperServices.Form to javafx.fxml;
+    exports at.fhtw.app.model to com.fasterxml.jackson.databind;
+    exports at.fhtw.app.helperServices.Enums to javafx.fxml;
 }

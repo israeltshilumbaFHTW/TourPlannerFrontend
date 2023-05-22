@@ -1,6 +1,7 @@
 package at.fhtw.app.helperServices.Form;
 
 import at.fhtw.app.helperServices.CustomExceptions.InvalidInputException;
+import at.fhtw.app.helperServices.Enums.FormMessages;
 import at.fhtw.app.model.FormTour;
 
 import java.util.regex.Pattern;
@@ -20,10 +21,10 @@ public class FormValidator {
         if (SPECIAL_CHARACTERS.matcher(formTour.getDescription()).find()) { //assignment not comparison
             throw new InvalidInputException(FormMessages.INVALID_DESCRIPTION.getMessage());
         }
-        if (SPECIAL_CHARACTERS.matcher(formTour.getFrom()).find()) { //assignment not comparison
+        if (SPECIAL_CHARACTERS.matcher(formTour.getFromLocation()).find()) { //assignment not comparison
             throw new InvalidInputException(FormMessages.INVALID_FROM.getMessage());
         }
-        if (SPECIAL_CHARACTERS.matcher(formTour.getTo()).find()) { //assignment not comparison
+        if (SPECIAL_CHARACTERS.matcher(formTour.getToLocation()).find()) { //assignment not comparison
             throw new InvalidInputException(FormMessages.INVALID_TO.getMessage());
         }
         if (SPECIAL_CHARACTERS.matcher(formTour.getRouteInformation()).find()) { //assignment not comparison
@@ -38,10 +39,10 @@ public class FormValidator {
         if (formTour.getDescription().isEmpty()) { //assignment not comparison
             throw new InvalidInputException(FormMessages.INVALID_DESCRIPTION.getMessage());
         }
-        if (formTour.getFrom().isEmpty()) { //assignment not comparison
+        if (formTour.getFromLocation().isEmpty()) { //assignment not comparison
             throw new InvalidInputException(FormMessages.INVALID_FROM.getMessage());
         }
-        if (formTour.getTo().isEmpty()) { //assignment not comparison
+        if (formTour.getToLocation().isEmpty()) { //assignment not comparison
             throw new InvalidInputException(FormMessages.INVALID_TO.getMessage());
         }
         if (formTour.getRouteInformation().isEmpty()) { //assignment not comparison

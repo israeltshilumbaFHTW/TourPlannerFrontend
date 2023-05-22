@@ -1,4 +1,4 @@
-package at.fhtw.app.helperServices.Form;
+package at.fhtw.app.helperServices.Enums;
 
 public enum FormMessages {
     INVALID_NAME("INVALID NAME"),
