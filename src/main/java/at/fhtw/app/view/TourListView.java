@@ -1,25 +1,31 @@
 package at.fhtw.app.view;
 
+import at.fhtw.app.helperServices.Form.FormInputManager;
+import at.fhtw.app.helperServices.Form.FormMessages;
+import at.fhtw.app.helperServices.Form.FormValidator;
+import at.fhtw.app.model.FormTour;
 import at.fhtw.app.viewModel.TourListViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TourListView {
     public TourListViewModel tourListViewModel = new TourListViewModel();
+    public FormInputManager formInputManager = new FormInputManager();
+
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    Alert successPrompt = new Alert(Alert.AlertType.INFORMATION);
 
     //Form Components
     @FXML
-    public AnchorPane tourForm;
+    public ScrollPane tourForm;
     @FXML
     public TextField formFrom;
     public ChoiceBox<String> formTransportType = new ChoiceBox<>();
@@ -32,16 +38,43 @@ public class TourListView {
     public Button formSubmitButton;
     @FXML
     public ListView<String> tourList = new ListView<>();
+    public TextArea formRouteInformation;
 
     @FXML
     public void addTour(ActionEvent event) {
         System.out.println("Button clicked: addTour");
+        //validate Input
+        FormTour formTour = new FormTour(formName.getText(), formDescription.getText(), formFrom.getText(), formTo.getText(), formTransportType.getValue(), formRouteInformation.getText());
+        String validationString = formInputManager.validateForm(formTour);
+
+        if (Objects.equals(validationString, FormMessages.VALID_FORM.getMessage())) {
+            //post them to DB
+            System.out.print("VALID INPUT");
+            System.out.printf(validationString);
+            successPrompt.setTitle("Tour has been added");
+            successPrompt.setContentText(FormMessages.FORM_ADDED.getMessage());
+            successPrompt.setHeaderText("");
+            successPrompt.showAndWait();
+        } else {
+            //show error message
+            alert.setTitle("INVALID INPUT");
+            alert.setContentText(validationString);
+            alert.setHeaderText("");
+            alert.showAndWait();
+            System.out.printf(validationString);
+        }
+
     }
 
     public void addTourFormShow(ActionEvent event) {
         //make TourList invisible
-        tourList.setVisible(false);
-        tourForm.setVisible(true);
+        if (tourList.isVisible()) {
+            tourList.setVisible(false);
+            tourForm.setVisible(true);
+        } else {
+            tourList.setVisible(true);
+            tourForm.setVisible(false);
+        }
         System.out.println("Button clicked: startForm");
     }
 
