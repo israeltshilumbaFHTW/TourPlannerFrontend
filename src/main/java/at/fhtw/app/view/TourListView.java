@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -15,17 +16,22 @@ import java.util.List;
 
 public class TourListView {
     public TourListViewModel tourListViewModel = new TourListViewModel();
-    public AnchorPane tourForm;
 
     //Form Components
     @FXML
-    private TextField formName;
+    public AnchorPane tourForm;
     @FXML
-    private TextField formDescription;
+    public TextField formFrom;
+    public ChoiceBox<String> formTransportType = new ChoiceBox<>();
+    public TextField formTo;
     @FXML
-    private Button formSubmitButton;
-    @javafx.fxml.FXML
-    private ListView<String> tourList = new ListView<>();
+    public TextField formName;
+    @FXML
+    public TextField formDescription;
+    @FXML
+    public Button formSubmitButton;
+    @FXML
+    public ListView<String> tourList = new ListView<>();
 
     @FXML
     public void addTour(ActionEvent event) {
@@ -41,10 +47,15 @@ public class TourListView {
 
     @javafx.fxml.FXML
     public void initialize() {
+        //init List
         ObservableList<String> tourNameListList = FXCollections.observableArrayList();
         tourNameListList = tourListViewModel.getTourNameList();
         System.out.printf(tourNameListList.toString());
         tourList.setItems(tourNameListList);
+
+        //init ChoiceBox
+        String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
+        formTransportType.getItems().addAll(choiceBoxChoices);
     }
 
 }
