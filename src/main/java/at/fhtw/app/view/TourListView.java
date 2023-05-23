@@ -2,9 +2,12 @@ package at.fhtw.app.view;
 
 import at.fhtw.app.helperServices.Form.FormInputManager;
 import at.fhtw.app.helperServices.Enums.FormMessages;
+import at.fhtw.app.helperServices.Observer.TourListObserver;
 import at.fhtw.app.model.FormTour;
+import at.fhtw.app.model.Tour;
 import at.fhtw.app.viewModel.TourFormViewModel;
 import at.fhtw.app.viewModel.TourListViewModel;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +16,7 @@ import javafx.scene.control.*;
 
 import java.util.Objects;
 
-public class TourListView {
+public class TourListView implements TourListObserver {
     public TourListViewModel tourListViewModel = new TourListViewModel();
     public TourFormViewModel tourFormViewModel = new TourFormViewModel();
     public FormInputManager formInputManager = new FormInputManager();
@@ -38,6 +41,18 @@ public class TourListView {
     public ListView<String> tourList = new ListView<>();
     public TextArea formRouteInformation;
 
+    @Override
+    public void onTourListUpdated() {
+        Platform.runLater(this::updateTourList);  //thread safe update
+    }
+
+    public void updateTourList() {
+        System.out.println("UPDATE TOUR LIST: TourListView");
+        ObservableList<String> tourNameList = tourListViewModel.getTourNameList();
+        this.tourList.getItems().setAll(tourNameList);
+        this.tourList.refresh();
+    }
+
     @FXML
     public void addTour(ActionEvent event) {
         System.out.println("Button clicked: addTour");
@@ -51,6 +66,7 @@ public class TourListView {
             System.out.printf(validationString);
 
             tourFormViewModel.postTour(formTour);
+            tourListViewModel.updateList();
             successPrompt.setTitle("Tour has been added");
             successPrompt.setContentText(FormMessages.FORM_ADDED.getMessage());
             successPrompt.setHeaderText("");
@@ -80,11 +96,11 @@ public class TourListView {
 
     @javafx.fxml.FXML
     public void initialize() {
+        tourListViewModel.registerObserver(this);
         //init List
         ObservableList<String> tourNameListList = FXCollections.observableArrayList();
         tourNameListList = tourListViewModel.getTourNameList();
-        System.out.printf(tourNameListList.toString());
-        tourList.setItems(tourNameListList);
+        this.tourList.setItems(tourNameListList);
 
         //init ChoiceBox
         String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
