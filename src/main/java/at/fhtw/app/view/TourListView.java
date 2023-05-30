@@ -12,11 +12,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class TourListView implements TourListObserver {
+public class TourListView implements TourListObserver, Initializable {
+    @FXML
+    public ListView<String> tourList = new ListView<>();
     public TourListViewModel tourListViewModel = new TourListViewModel();
     public TourFormViewModel tourFormViewModel = new TourFormViewModel();
     public FormInputManager formInputManager = new FormInputManager();
@@ -37,9 +42,19 @@ public class TourListView implements TourListObserver {
     public TextField formDescription;
     @FXML
     public Button formSubmitButton;
-    @FXML
-    public ListView<String> tourList = new ListView<>();
     public TextArea formRouteInformation;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tourListViewModel.registerObserver(this);
+        //init List
+
+        this.tourList.setItems(tourListViewModel.getTourNameList());
+
+        //init ChoiceBox
+        String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
+        formTransportType.getItems().addAll(choiceBoxChoices);
+    }
 
     @Override
     public void onTourListUpdated() {
@@ -93,18 +108,4 @@ public class TourListView implements TourListObserver {
         }
         System.out.println("Button clicked: startForm");
     }
-
-    @javafx.fxml.FXML
-    public void initialize() {
-        tourListViewModel.registerObserver(this);
-        //init List
-        ObservableList<String> tourNameListList = FXCollections.observableArrayList();
-        tourNameListList = tourListViewModel.getTourNameList();
-        this.tourList.setItems(tourNameListList);
-
-        //init ChoiceBox
-        String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
-        formTransportType.getItems().addAll(choiceBoxChoices);
-    }
-
 }
