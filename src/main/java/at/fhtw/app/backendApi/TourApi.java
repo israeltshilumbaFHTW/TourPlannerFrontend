@@ -30,6 +30,7 @@ public class TourApi {
     private HttpClient client = HttpClientBuilder.create().build();
 
     public List <Tour> getAllTours() {
+        System.out.println("getAllTours");
         HttpGet request = new HttpGet(ApiEndpoints.GET_TOURS.getEndPoint());
         List<Tour> tourList;
 

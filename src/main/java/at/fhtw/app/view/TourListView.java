@@ -5,6 +5,7 @@ import at.fhtw.app.helperServices.Enums.FormMessages;
 import at.fhtw.app.helperServices.Observer.TourListObserver;
 import at.fhtw.app.model.FormTour;
 import at.fhtw.app.model.Tour;
+import at.fhtw.app.view.components.TourListViewFxComponents;
 import at.fhtw.app.viewModel.TourFormViewModel;
 import at.fhtw.app.viewModel.TourListViewModel;
 import javafx.application.Platform;
@@ -19,9 +20,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class TourListView implements TourListObserver, Initializable {
-    @FXML
-    public ListView<String> tourList = new ListView<>();
+public class TourListView extends TourListViewFxComponents implements TourListObserver, Initializable {
+
     public TourListViewModel tourListViewModel = new TourListViewModel();
     public TourFormViewModel tourFormViewModel = new TourFormViewModel();
     public FormInputManager formInputManager = new FormInputManager();
@@ -30,19 +30,7 @@ public class TourListView implements TourListObserver, Initializable {
     Alert successPrompt = new Alert(Alert.AlertType.INFORMATION);
 
     //Form Components
-    @FXML
-    public ScrollPane tourForm;
-    @FXML
-    public TextField formFrom;
-    public ChoiceBox<String> formTransportType = new ChoiceBox<>();
-    public TextField formTo;
-    @FXML
-    public TextField formName;
-    @FXML
-    public TextField formDescription;
-    @FXML
-    public Button formSubmitButton;
-    public TextArea formRouteInformation;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

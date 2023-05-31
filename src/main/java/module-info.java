@@ -15,4 +15,5 @@ module at.fhtw.todolist {
     exports at.fhtw.app.helperServices.Form to javafx.fxml;
     exports at.fhtw.app.model to com.fasterxml.jackson.databind;
     exports at.fhtw.app.helperServices.Enums to javafx.fxml;
+    exports at.fhtw.app.view.components to javafx.fxml;
 }
