@@ -5,7 +5,19 @@ import at.fhtw.app.model.FormTour;
 import at.fhtw.app.model.Tour;
 
 public class TourFormViewModel {
-    private final TourApi tourApi = new TourApi();
+    private static TourFormViewModel TourFormViewModelInstance = null;
+    private final TourApi tourApi;
+
+    private TourFormViewModel() {
+        this.tourApi = new TourApi();
+    }
+
+    public static TourFormViewModel getInstance() {
+        if (TourFormViewModelInstance == null) {
+            TourFormViewModelInstance = new TourFormViewModel();
+        }
+        return TourFormViewModelInstance;
+    }
 
     public void postTour(FormTour formTour) { //
         //send Tour entries to server

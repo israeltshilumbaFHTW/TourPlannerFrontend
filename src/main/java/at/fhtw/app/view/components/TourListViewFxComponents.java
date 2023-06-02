@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 
 public abstract class TourListViewFxComponents {
     @FXML
-    public ListView<String> tourList = new ListView<>();
+    public ListView<String> tourNamesList;
     @FXML
     public ScrollPane tourForm;
     @FXML
@@ -19,4 +19,9 @@ public abstract class TourListViewFxComponents {
     @FXML
     public Button formSubmitButton;
     public TextArea formRouteInformation;
+
+    @FXML
+    public void addTourFormShow() {
+        tourNamesList.getItems().add(formName.getText());
+    }
 }

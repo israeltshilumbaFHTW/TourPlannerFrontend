@@ -4,17 +4,16 @@ import at.fhtw.app.helperServices.Form.FormInputManager;
 import at.fhtw.app.helperServices.Enums.FormMessages;
 import at.fhtw.app.helperServices.Observer.TourListObserver;
 import at.fhtw.app.model.FormTour;
-import at.fhtw.app.model.Tour;
 import at.fhtw.app.view.components.TourListViewFxComponents;
 import at.fhtw.app.viewModel.TourFormViewModel;
 import at.fhtw.app.viewModel.TourListViewModel;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.Objects;
@@ -22,12 +21,17 @@ import java.util.ResourceBundle;
 
 public class TourListView extends TourListViewFxComponents implements TourListObserver, Initializable {
 
-    public TourListViewModel tourListViewModel = new TourListViewModel();
-    public TourFormViewModel tourFormViewModel = new TourFormViewModel();
-    public FormInputManager formInputManager = new FormInputManager();
+    public TourListViewModel tourListViewModel;
+    public TourFormViewModel tourFormViewModel;
+    public FormInputManager formInputManager;
 
     Alert alert = new Alert(Alert.AlertType.ERROR);
     Alert successPrompt = new Alert(Alert.AlertType.INFORMATION);
+
+    public TourListView() {
+        this.formInputManager = new FormInputManager();
+        this.tourListViewModel = TourListViewModel.getInstance();
+    }
 
     //Form Components
 
@@ -37,7 +41,7 @@ public class TourListView extends TourListViewFxComponents implements TourListOb
         tourListViewModel.registerObserver(this);
         //init List
 
-        this.tourList.setItems(tourListViewModel.getTourNameList());
+        this.tourNamesList.setItems(tourListViewModel.getTourNameList());
 
         //init ChoiceBox
         String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
@@ -52,46 +56,18 @@ public class TourListView extends TourListViewFxComponents implements TourListOb
     public void updateTourList() {
         System.out.println("UPDATE TOUR LIST: TourListView");
         ObservableList<String> tourNameList = tourListViewModel.getTourNameList();
-        this.tourList.getItems().setAll(tourNameList);
-        this.tourList.refresh();
+        this.tourNamesList.getItems().add("testSTring");
+        this.tourNamesList.refresh();
     }
 
-    @FXML
-    public void addTour(ActionEvent event) {
-        System.out.println("Button clicked: addTour");
-        //validate Input
-        FormTour formTour = new FormTour(formName.getText(), formDescription.getText(), formFrom.getText(), formTo.getText(), formTransportType.getValue(), formRouteInformation.getText());
-        String validationString = formInputManager.validateForm(formTour);
 
-        if (Objects.equals(validationString, FormMessages.VALID_FORM.getMessage())) {
-            //post them to DB
-            System.out.print("VALID INPUT");
-            System.out.printf(validationString);
-
-            tourFormViewModel.postTour(formTour);
-            tourListViewModel.updateList();
-            successPrompt.setTitle("Tour has been added");
-            successPrompt.setContentText(FormMessages.FORM_ADDED.getMessage());
-            successPrompt.setHeaderText("");
-            successPrompt.showAndWait();
-        } else {
-            //show error message
-            alert.setTitle("INVALID INPUT");
-            alert.setContentText(validationString);
-            alert.setHeaderText("");
-            alert.showAndWait();
-            System.out.printf(validationString);
-        }
-
-    }
-
-    public void addTourFormShow(ActionEvent event) {
+    public void addTourFormShow(MouseEvent event) {
         //make TourList invisible
-        if (tourList.isVisible()) {
-            tourList.setVisible(false);
+        if (tourNamesList.isVisible()) {
+            tourNamesList.setVisible(false);
             tourForm.setVisible(true);
         } else {
-            tourList.setVisible(true);
+            tourNamesList.setVisible(true);
             tourForm.setVisible(false);
         }
         System.out.println("Button clicked: startForm");
