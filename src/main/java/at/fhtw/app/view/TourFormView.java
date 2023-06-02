@@ -1,37 +1,20 @@
 package at.fhtw.app.view;
 
 import at.fhtw.app.helperServices.Enums.FormMessages;
-import at.fhtw.app.helperServices.Form.FormInputManager;
 import at.fhtw.app.model.FormTour;
+import at.fhtw.app.view.components.TourFormViewFxComponents;
 import at.fhtw.app.viewModel.TourFormViewModel;
 import at.fhtw.app.viewModel.TourListViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class TourFormView implements Initializable {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    Alert successPrompt = new Alert(Alert.AlertType.INFORMATION);
-    private final FormInputManager formInputManager = new FormInputManager();
-    @javafx.fxml.FXML
-    private TextField formName;
-    @javafx.fxml.FXML
-    private TextField formDescription;
-    @javafx.fxml.FXML
-    private Button formSubmitButton;
-    @javafx.fxml.FXML
-    private TextField formFrom;
-    @javafx.fxml.FXML
-    private TextField formTo;
-    @javafx.fxml.FXML
-    private ChoiceBox<String> formTransportType;
-    @javafx.fxml.FXML
-    private TextArea formRouteInformation;
+public class TourFormView extends TourFormViewFxComponents implements Initializable {
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +51,8 @@ public class TourFormView implements Initializable {
             alert.setHeaderText("");
             alert.showAndWait();
             System.out.printf(validationString);
+
         }
+        tourForm.setVisible(false);
     }
 }

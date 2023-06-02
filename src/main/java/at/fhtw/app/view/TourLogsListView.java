@@ -2,26 +2,26 @@ package at.fhtw.app.view;
 
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.viewModel.TourLogsListViewModel;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class TourLogsListView implements Initializable {
     //displayed as: Date | Duration | Distance
 
     public TourLogsListViewModel tourLogsListViewModel = new TourLogsListViewModel();
-    @javafx.fxml.FXML
+    @FXML
     public TableView<Tour> tourLogsTable;
-    @javafx.fxml.FXML
+    @FXML
     public TableColumn<Tour, String> colTourDate;
-    @javafx.fxml.FXML
+    @FXML
     private TableColumn<Tour, Double> colTourDuration;
-    @javafx.fxml.FXML
+    @FXML
     private TableColumn<Tour, Double> colTourDistance;
 
     @Override
