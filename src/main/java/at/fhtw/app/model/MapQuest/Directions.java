@@ -1,17 +1,20 @@
 package at.fhtw.app.model.MapQuest;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 
 public class Directions implements Serializable {
     private double distance;
-    private int time;
-    private String mapUrl;
+    private String time;
+    private String sessionId;
+    private BoundingBox boundingBox;
 
     // Constructor
-    public Directions(double distance, int time, String mapUrl) {
+    public Directions(double distance, String time, String sessionId) {
         this.distance = distance;
         this.time = time;
-        this.mapUrl = mapUrl;
+        this.sessionId = sessionId;
+        this.boundingBox = new BoundingBox();
     }
 
     public Directions() {
@@ -22,24 +25,32 @@ public class Directions implements Serializable {
         return distance;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
-    }
-
-    public String getMapUrl() {
-        return mapUrl;
     }
 
     public void setDistance(double distance) {
         this.distance = distance;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public void setMapUrl(String mapUrl) {
-        this.mapUrl = mapUrl;
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public BoundingBox getBoundingBox() {
+        return boundingBox;
+    }
+
+    public void setBoundingBox(BoundingBox boundingBox) {
+        this.boundingBox = boundingBox;
     }
 
     @Override
@@ -47,7 +58,6 @@ public class Directions implements Serializable {
         return "Directions{" +
                 "distance=" + distance +
                 ", time=" + time +
-                ", mapUrl='" + mapUrl + '\'' +
                 '}';
     }
 }

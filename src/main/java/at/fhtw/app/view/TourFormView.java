@@ -19,7 +19,9 @@ public class TourFormView extends TourFormViewFxComponents implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //init ChoiceBox
-        String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
+
+
+        String[] choiceBoxChoices = {"fastest", "shortest", "pedestrian", "bicycle"};
         formTransportType.getItems().addAll(choiceBoxChoices);
     }
 

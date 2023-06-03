@@ -1,16 +1,12 @@
 package at.fhtw.app.backendApi;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import at.fhtw.app.helperServices.Enums.ApiEndpoints;
 import at.fhtw.app.helperServices.Enums.ApiResponse;
-import at.fhtw.app.model.FormTour;
 import at.fhtw.app.model.Tour;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

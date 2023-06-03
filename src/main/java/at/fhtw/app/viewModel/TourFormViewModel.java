@@ -34,7 +34,7 @@ public class TourFormViewModel {
                 formTour.getToLocation(),
                 formTour.getTransportType(),
                 directions.getDistance(),
-                (double) directions.getTime(), null);
+                directions.getTime(), null);
         //send Tour entries to server
         System.out.println("Form Tour: " + formTour.toString());
 

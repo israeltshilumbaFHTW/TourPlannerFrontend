@@ -2,6 +2,7 @@ package at.fhtw.app.model;
 
 import at.fhtw.app.backendApi.TourApi;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Tour {
@@ -12,13 +13,13 @@ public class Tour {
     private String toLocation;
     private String transportType;
     private Double distance;
-    private Double estimatedTime;
+    private String estimatedTime;
     private String date;
 
     public Tour() {
     }
 
-    public Tour(Integer id, String name, String description, String fromLocation, String toLocation, String transportType, Double distance, Double estimatedTime, String date) {
+    public Tour(Integer id, String name, String description, String fromLocation, String toLocation, String transportType, Double distance, String estimatedTime, String date) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -86,11 +87,11 @@ public class Tour {
         this.distance = distance;
     }
 
-    public Double getEstimatedTime() {
+    public String getEstimatedTime() {
         return estimatedTime;
     }
 
-    public void setEstimatedTime(Double estimatedTime) {
+    public void setEstimatedTime(String estimatedTime) {
         this.estimatedTime = estimatedTime;
     }
 
