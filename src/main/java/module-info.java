@@ -10,6 +10,8 @@ module at.fhtw.todolist {
     opens at.fhtw.app.view to javafx.fxml;
     opens at.fhtw.app.model to javafx.base;
     opens at.fhtw.app.view.components to javafx.fxml;
+    opens at.fhtw.app.model.MapQuest to com.fasterxml.jackson.databind;
+
     exports at.fhtw.app.view to javafx.fxml;
     exports at.fhtw.app to javafx.graphics;
     exports at.fhtw.app.viewModel to javafx.fxml;
@@ -17,4 +19,5 @@ module at.fhtw.todolist {
     exports at.fhtw.app.model to com.fasterxml.jackson.databind;
     exports at.fhtw.app.helperServices.Enums to javafx.fxml;
     exports at.fhtw.app.view.components to javafx.fxml;
+    exports at.fhtw.app.model.MapQuest to com.fasterxml.jackson.databind;
 }

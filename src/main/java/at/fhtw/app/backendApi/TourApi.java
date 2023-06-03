@@ -27,7 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class TourApi {
-    private HttpClient client = HttpClientBuilder.create().build();
+    private final HttpClient client = HttpClientBuilder.create().build();
 
     public List <Tour> getAllTours() {
         System.out.println("getAllTours");
@@ -52,12 +52,12 @@ public class TourApi {
         }
     }
 
-    public String postTour(FormTour formTour) {
+    public String postTour(Tour Tour) {
         HttpPost request = new HttpPost(ApiEndpoints.POST_TOUR.getEndPoint());
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            String tourJson = objectMapper.writeValueAsString(formTour);
+            String tourJson = objectMapper.writeValueAsString(Tour);
             StringEntity requestEntity = new StringEntity(tourJson);
 
             request.setEntity(requestEntity);
