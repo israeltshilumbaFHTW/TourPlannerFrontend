@@ -56,15 +56,12 @@ public class MapQuestDirectionsApi {
 
     public String buildStaticMapUrl(Directions directions) {
         String baseUrl = "https://www.mapquestapi.com/staticmap/v5/map";
-        String apiKey = "key=" + API_KEY;
-        String size = "&size=640,480";
-        String defaultMarker = "&defaultMarker=none";
-        String zoom = "&zoom=10";
+        String size = "&size=600,400@2x";
         String session = "&session=" + directions.getSessionId();
         String start = "&start=" + formTour.getFromLocation();
         String end = "&end=" + formTour.getToLocation();
 
-        return baseUrl + "?" + API_KEY + size + defaultMarker + zoom + session + start + end;
+        return baseUrl + "?key=" + API_KEY + size + session + start + end;
     }
 
 

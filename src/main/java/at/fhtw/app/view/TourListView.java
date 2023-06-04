@@ -1,7 +1,7 @@
 package at.fhtw.app.view;
 
 import at.fhtw.app.helperServices.Form.FormInputManager;
-import at.fhtw.app.helperServices.Observer.TourListObserver;
+import at.fhtw.app.helperServices.Listener.TourListListener;
 import at.fhtw.app.view.components.TourListViewFxComponents;
 import at.fhtw.app.viewModel.TourListViewModel;
 import javafx.application.Platform;
@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TourListView extends TourListViewFxComponents implements TourListObserver, Initializable {
+public class TourListView extends TourListViewFxComponents implements TourListListener, Initializable {
 
     public TourListViewModel tourListViewModel;
     public FormInputManager formInputManager;
@@ -27,14 +27,22 @@ public class TourListView extends TourListViewFxComponents implements TourListOb
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tourListViewModel.registerObserver(this);
+        tourListViewModel.registerTourNameListObserver(this);
         //init List
 
         this.tourNamesList.setItems(tourListViewModel.getTourNameList());
+        this.tourNamesList.setOnMouseClicked(this::handleTourSelection);
 
         //init ChoiceBox
         String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
         formTransportType.getItems().addAll(choiceBoxChoices);
+    }
+
+    private void handleTourSelection(MouseEvent event) {
+        System.out.println("handleTourSelection");
+        int selectedTourIndex = tourNamesList.getSelectionModel().getSelectedIndex();
+        this.tourListViewModel.selectTour(selectedTourIndex);
+
     }
 
     @Override
