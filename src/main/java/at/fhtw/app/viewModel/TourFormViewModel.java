@@ -27,16 +27,19 @@ public class TourFormViewModel {
     public void postTour(FormTour formTour) { //
         MapQuestDirectionsApi mapQuestDirectionsApi = new MapQuestDirectionsApi(formTour);
         Directions directions = mapQuestDirectionsApi.getDirection();
-        Tour tour = new Tour(null,
+        String imageUrl = mapQuestDirectionsApi.buildStaticMapUrl(directions);
+        Tour tour = new Tour(
                 formTour.getName(),
                 formTour.getDescription(),
                 formTour.getFromLocation(),
                 formTour.getToLocation(),
                 formTour.getTransportType(),
                 directions.getDistance(),
-                directions.getTime(), null);
+                directions.getTime(),
+                imageUrl
+        );
         //send Tour entries to server
-        System.out.println("Form Tour: " + formTour.toString());
+        //Get Image Url
 
         String response = tourApi.postTour(tour);
         System.out.println(response);

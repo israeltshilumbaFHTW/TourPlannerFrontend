@@ -1,8 +1,6 @@
 package at.fhtw.app.backendApi;
 
 import at.fhtw.app.model.FormTour;
-import at.fhtw.app.model.MapQuest.BoundingBox;
-import at.fhtw.app.model.MapQuest.Coordinate;
 import at.fhtw.app.model.MapQuest.Directions;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,8 +11,11 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.time.LocalTime;
+import java.awt.image.BufferedImage;
 
 public class MapQuestDirectionsApi {
     private final FormTour formTour;
@@ -45,13 +46,27 @@ public class MapQuestDirectionsApi {
             System.out.println("Directions:" + directions.toString());
 
 
-            System.out.println(directionsJSON.toString());
             return this.directions;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
+
+
+    public String buildStaticMapUrl(Directions directions) {
+        String baseUrl = "https://www.mapquestapi.com/staticmap/v5/map";
+        String apiKey = "key=" + API_KEY;
+        String size = "&size=640,480";
+        String defaultMarker = "&defaultMarker=none";
+        String zoom = "&zoom=10";
+        String session = "&session=" + directions.getSessionId();
+        String start = "&start=" + formTour.getFromLocation();
+        String end = "&end=" + formTour.getToLocation();
+
+        return baseUrl + "?" + API_KEY + size + defaultMarker + zoom + session + start + end;
+    }
+
 
     private void parseJsonObject(JSONObject directionsJSON) {
         this.directions.setDistance(
@@ -68,29 +83,6 @@ public class MapQuestDirectionsApi {
                         getString("sessionId")
         );
 
-        Coordinate lowerRightCoordinate = new Coordinate(
-                directionsJSON.getJSONObject("route").
-                        getJSONObject("boundingBox").
-                        getJSONObject("lr").
-                        getDouble("lng"),
-                directionsJSON.getJSONObject("route").
-                        getJSONObject("boundingBox").
-                        getJSONObject("lr").
-                        getDouble("lat")
-        );
-
-        Coordinate upperLeftCoordinate = new Coordinate(
-                directionsJSON.getJSONObject("route").
-                        getJSONObject("boundingBox").
-                        getJSONObject("ul").
-                        getDouble("lng"),
-                directionsJSON.getJSONObject("route").
-                        getJSONObject("boundingBox").
-                        getJSONObject("ul").
-                        getDouble("lat")
-        );
-        BoundingBox boundingBox = new BoundingBox(upperLeftCoordinate, lowerRightCoordinate);
-        this.directions.setBoundingBox(boundingBox);
     }
 
     private String buildRequestUrl(FormTour formTour) {
@@ -101,8 +93,7 @@ public class MapQuestDirectionsApi {
         String from = formTour.getFromLocation();
         String to = formTour.getToLocation();
         String routeType = formTour.getTransportType();
-        String apiKey = API_KEY;
 
-        return String.format("%s?key=%s&from=%s&to=%s&routeType=%s", baseUrl, apiKey, from, to, routeType);
+        return String.format("%s?key=%s&from=%s&to=%s&routeType=%s", baseUrl, API_KEY, from, to, routeType);
     }
 }

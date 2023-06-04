@@ -5,6 +5,7 @@ module at.fhtw.todolist {
     requires org.apache.httpcomponents.httpcore;
     requires org.json;
     requires com.fasterxml.jackson.databind;
+    requires java.desktop;
 
 
     opens at.fhtw.app.view to javafx.fxml;

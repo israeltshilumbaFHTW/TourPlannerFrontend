@@ -15,12 +15,12 @@ public class Tour {
     private Double distance;
     private String estimatedTime;
     private String date;
+    private String imageUrl;
 
     public Tour() {
     }
 
-    public Tour(Integer id, String name, String description, String fromLocation, String toLocation, String transportType, Double distance, String estimatedTime, String date) {
-        this.id = id;
+    public Tour(String name, String description, String fromLocation, String toLocation, String transportType, Double distance, String estimatedTime, String imageUrl) {
         this.name = name;
         this.description = description;
         this.fromLocation = fromLocation;
@@ -28,7 +28,7 @@ public class Tour {
         this.transportType = transportType;
         this.distance = distance;
         this.estimatedTime = estimatedTime;
-        this.date = date;
+        this.imageUrl = imageUrl;
     }
 
     public Integer getId() {
@@ -101,6 +101,30 @@ public class Tour {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getFromLocation() {
+        return fromLocation;
+    }
+
+    public void setFromLocation(String fromLocation) {
+        this.fromLocation = fromLocation;
+    }
+
+    public String getToLocation() {
+        return toLocation;
+    }
+
+    public void setToLocation(String toLocation) {
+        this.toLocation = toLocation;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 

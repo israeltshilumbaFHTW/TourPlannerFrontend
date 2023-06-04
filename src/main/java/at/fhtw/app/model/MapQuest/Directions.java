@@ -7,14 +7,12 @@ public class Directions implements Serializable {
     private double distance;
     private String time;
     private String sessionId;
-    private BoundingBox boundingBox;
 
     // Constructor
     public Directions(double distance, String time, String sessionId) {
         this.distance = distance;
         this.time = time;
         this.sessionId = sessionId;
-        this.boundingBox = new BoundingBox();
     }
 
     public Directions() {
@@ -45,19 +43,13 @@ public class Directions implements Serializable {
         this.sessionId = sessionId;
     }
 
-    public BoundingBox getBoundingBox() {
-        return boundingBox;
-    }
-
-    public void setBoundingBox(BoundingBox boundingBox) {
-        this.boundingBox = boundingBox;
-    }
 
     @Override
     public String toString() {
         return "Directions{" +
                 "distance=" + distance +
                 ", time=" + time +
+                ", sessionId=" + sessionId +
                 '}';
     }
 }
