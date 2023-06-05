@@ -20,5 +20,4 @@ public abstract class TourListClickObserver {
             listener.changeSelection(selectedTour);
         }
     }
-
 }

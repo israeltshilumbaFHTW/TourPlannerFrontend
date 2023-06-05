@@ -57,11 +57,11 @@ public class MapQuestDirectionsApi {
     public String buildStaticMapUrl(Directions directions) {
         String baseUrl = "https://www.mapquestapi.com/staticmap/v5/map";
         String size = "&size=600,400@2x";
-        String session = "&session=" + directions.getSessionId();
-        String start = "&start=" + formTour.getFromLocation();
-        String end = "&end=" + formTour.getToLocation();
+        //String session = "&session=" + directions.getSessionId().replace(" ","+");
+        String start = "&start=" + formTour.getFromLocation().replace(" ", "+");
+        String end = "&end=" + formTour.getToLocation().replace(" ", "+");
 
-        return baseUrl + "?key=" + API_KEY + size + session + start + end;
+        return baseUrl + "?key=" + API_KEY + size + start + end;
     }
 
 
@@ -87,8 +87,9 @@ public class MapQuestDirectionsApi {
         // Replace placeholders with the actual values
 
         String baseUrl = "https://www.mapquestapi.com/directions/v2/route";
-        String from = formTour.getFromLocation();
-        String to = formTour.getToLocation();
+        String from = formTour.getFromLocation().replace(" ", "+");
+        System.out.println("from:" + from);
+        String to = formTour.getToLocation().replace(" ", "+");
         String routeType = formTour.getTransportType();
 
         return String.format("%s?key=%s&from=%s&to=%s&routeType=%s", baseUrl, API_KEY, from, to, routeType);

@@ -24,13 +24,14 @@ public class TourImage implements Initializable, TourListClickListener {
         String imageUrl = "https://www.mapquestapi.com/staticmap/v5/map?start=San+Francisco,CA&end=Los+Angeles,JP&routeArc=false&size=800,600@2x&key=nathu9TckDPtj5j4LKlMMv2Zh0nxDlYg";
         Image image = new Image(imageUrl);
         routeImageView.setImage(image);
+        routeImageView.setPreserveRatio(true);
     }
 
     @Override
     public void changeSelection(Tour tour) {
         System.out.println("ChangeSelection Image");
         Image image = new Image(tour.getImageUrl());
-        System.out.println(tour.getImageUrl());
+        System.out.println("tourImageUrl:" + tour.getImageUrl());
         routeImageView.setImage(image);
     }
 }

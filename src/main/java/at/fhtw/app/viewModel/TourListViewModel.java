@@ -60,10 +60,13 @@ public class TourListViewModel extends TourListClickObserver {
 
     public void updateList() {
         System.out.println("UPDATE LIST");
-        tourNameList.clear();
+        this.tourNameList.clear();
+        this.tourList.clear();
 
         List<Tour> tourList = tourApi.getAllTours();
         tourList.forEach(this::addItem);
+        System.out.println("tourObjectSize" + this.tourList.size());
+        System.out.println("tourListSize" + tourNameList.size());
         notifyTourNameListObservers();
     }
 
