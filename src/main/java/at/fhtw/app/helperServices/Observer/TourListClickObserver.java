@@ -10,8 +10,8 @@ public abstract class TourListClickObserver {
 
     private final List<TourListClickListener> listeners = new ArrayList<>();
 
-    public void addTourClickedListener(TourListClickListener tourListClickListener) {
-        System.out.println("addTourClickListener");
+    public void registerTourClickListener(TourListClickListener tourListClickListener) {
+        System.out.println("registerTourClickListener");
         this.listeners.add(tourListClickListener);
     }
 

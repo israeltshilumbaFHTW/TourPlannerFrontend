@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<Tab xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+     text="General" fx:id="general" fx:controller="at.fhtw.app.view.GeneralView">
+    <content>
+        <AnchorPane
+                minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+                <Label layoutX="14.0" layoutY="55.0" text="From:"/>
+                <Label layoutX="190.0" layoutY="55.0" text="To:"/>
+                <Text layoutX="12.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour Description:"/>
+                <Text layoutX="12.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Route Information:"/>
+                <Text fx:id="tourName" layoutX="167.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Tour-Name"/>
+                <Text fx:id="tourFrom" layoutX="60.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Tour-From"/>
+                <Text fx:id="tourTo" layoutX="231.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Tour-To"/>
+                <Text fx:id="tourDescription" layoutX="12.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Tour-Description" wrappingWidth="174.0"/>
+                <Text fx:id="routeInformation" layoutX="12.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Route-Information" wrappingWidth="343.21630859375"/>
+                <Label layoutX="192.0" layoutY="100.0" text="Popularity:"/>
+                <Label layoutX="192.0" layoutY="152.0" text="Child-Friendliness:"/>
+                <Text fx:id="tourPopularity" layoutX="192.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Popularity"/>
+                <Text fx:id="tourChildFriendliness" layoutX="193.0" layoutY="182.0" strokeType="OUTSIDE"
+                      strokeWidth="0.0" text="child-friendliness"/>
+            </children>
+        </AnchorPane>
+    </content>
+</Tab>
