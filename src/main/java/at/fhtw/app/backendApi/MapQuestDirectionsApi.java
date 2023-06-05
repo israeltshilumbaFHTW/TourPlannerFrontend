@@ -43,7 +43,7 @@ public class MapQuestDirectionsApi {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             parseJsonObject(directionsJSON);
-            System.out.println("Directions:" + directions.toString());
+            System.out.println("Directions:" + directions);
 
 
             return this.directions;

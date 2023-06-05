@@ -8,7 +8,7 @@ public enum ApiEndpoints {
 
     private final String endPoint;
 
-    private ApiEndpoints(String endPoint) {
+    ApiEndpoints(String endPoint) {
         this.endPoint = endPoint;
     }
 

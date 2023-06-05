@@ -38,7 +38,7 @@ public class TourApi {
             JSONArray toursArray = new JSONArray(responseBody);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            System.out.println(toursArray.toString());
+            System.out.println(toursArray);
             tourList = objectMapper.readValue(toursArray.toString(), new TypeReference<List<Tour>>() {
             });
 

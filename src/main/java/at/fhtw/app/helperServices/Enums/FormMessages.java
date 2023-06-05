@@ -12,7 +12,7 @@ public enum FormMessages {
 
     private String message = "MESSAGE";
 
-    private FormMessages(String message) {
+    FormMessages(String message) {
         this.message = message;
     }
 

@@ -16,7 +16,7 @@ public class TourListViewModel extends TourListClickObserver {
     private final ObservableList<String> tourNameList;
     private final ObservableList<Tour> tourList;
     //Observer Pattern
-    private List<TourListListener> observers = new ArrayList<>();
+    private final List<TourListListener> observers = new ArrayList<>();
 
     private TourListViewModel() {
         this.tourNameList = FXCollections.observableArrayList();

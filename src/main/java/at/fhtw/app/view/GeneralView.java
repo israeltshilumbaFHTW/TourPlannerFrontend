@@ -17,6 +17,10 @@ public class GeneralView extends GeneralViewFxComponents implements TourListClic
         this.tourDescription.setText(tour.getDescription());
         this.tourFrom.setText(tour.getFrom());
         this.tourTo.setText(tour.getTo());
+        this.routeInformation.setText(tour.getRouteInformation());
+        this.tourPopularity.setText(tour.getPopularity().toString());
+        this.tourChildFriendliness.setText(tour.getChildFriendliness().toString());
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package at.fhtw.app.model;
 
 import at.fhtw.app.backendApi.TourApi;
 
+import javax.swing.*;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -16,11 +17,14 @@ public class Tour {
     private String estimatedTime;
     private String date;
     private String imageUrl;
+    private String routeInformation;
+    private Integer popularity;
+    private Double childFriendliness;
 
     public Tour() {
     }
 
-    public Tour(String name, String description, String fromLocation, String toLocation, String transportType, Double distance, String estimatedTime, String imageUrl) {
+    public Tour(String name, String description, String fromLocation, String toLocation, String transportType, Double distance, String estimatedTime, String imageUrl, String routeInformation) {
         this.name = name;
         this.description = description;
         this.fromLocation = fromLocation;
@@ -29,6 +33,9 @@ public class Tour {
         this.distance = distance;
         this.estimatedTime = estimatedTime;
         this.imageUrl = imageUrl;
+        this.routeInformation = routeInformation;
+        this.popularity = 0;
+        this.childFriendliness = 0.00;
     }
 
     public Integer getId() {
@@ -125,6 +132,30 @@ public class Tour {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getRouteInformation() {
+        return routeInformation;
+    }
+
+    public void setRouteInformation(String routeInformation) {
+        this.routeInformation = routeInformation;
+    }
+
+    public Integer getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Integer popularity) {
+        this.popularity = popularity;
+    }
+
+    public Double getChildFriendliness() {
+        return childFriendliness;
+    }
+
+    public void setChildFriendliness(Double childFriendliness) {
+        this.childFriendliness = childFriendliness;
     }
 }
 

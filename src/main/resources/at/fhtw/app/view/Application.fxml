@@ -88,7 +88,9 @@
                                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                  AnchorPane.topAnchor="0.0">
                                             <tabs>
-                                                <fx:include source="General.fxml"/>
+                                                <Tab text="General">
+                                                    <fx:include source="General.fxml"/>
+                                                </Tab>
                                                 <Tab text="Route">
                                                     <content>
                                                         <SplitPane orientation="VERTICAL" prefHeight="200.0"

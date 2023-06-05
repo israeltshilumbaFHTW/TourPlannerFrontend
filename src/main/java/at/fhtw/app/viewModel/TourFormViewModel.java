@@ -36,7 +36,8 @@ public class TourFormViewModel {
                 formTour.getTransportType(),
                 directions.getDistance(),
                 directions.getTime(),
-                imageUrl
+                imageUrl,
+                formTour.getRouteInformation()
         );
         //send Tour entries to server
         //Get Image Url

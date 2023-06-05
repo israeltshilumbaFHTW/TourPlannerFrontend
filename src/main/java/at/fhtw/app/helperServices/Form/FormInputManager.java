@@ -4,7 +4,7 @@ import at.fhtw.app.helperServices.Enums.FormMessages;
 import at.fhtw.app.model.FormTour;
 
 public class FormInputManager {
-    private FormValidator formValidator;
+    private final FormValidator formValidator;
 
     public FormInputManager() {
         formValidator = new FormValidator();

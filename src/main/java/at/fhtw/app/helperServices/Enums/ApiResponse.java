@@ -6,7 +6,7 @@ public enum ApiResponse {
 
     private final String responseMessage;
 
-    private ApiResponse(String responseMessage) {
+    ApiResponse(String responseMessage) {
         this.responseMessage = responseMessage;
     }
 
