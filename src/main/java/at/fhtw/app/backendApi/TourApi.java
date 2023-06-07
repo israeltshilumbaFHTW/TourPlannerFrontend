@@ -8,6 +8,7 @@ import java.util.List;
 import at.fhtw.app.helperServices.Enums.ApiEndpoints;
 import at.fhtw.app.helperServices.Enums.ApiResponse;
 import at.fhtw.app.model.Tour;
+import at.fhtw.app.model.TourLog;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -79,4 +80,7 @@ public class TourApi {
         }
     }
 
+    public List<TourLog> getAllTourLogs(Tour tour) {
+        return tour.getTourLogList();
+    }
 }

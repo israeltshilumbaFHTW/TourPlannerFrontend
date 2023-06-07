@@ -92,6 +92,8 @@ public class MapQuestDirectionsApi {
         String to = formTour.getToLocation().replace(" ", "+");
         String routeType = formTour.getTransportType();
 
-        return String.format("%s?key=%s&from=%s&to=%s&routeType=%s", baseUrl, API_KEY, from, to, routeType);
+        String request = String.format("%s?key=%s&from=%s&to=%s&routeType=%s", baseUrl, API_KEY, from, to, routeType);
+        System.out.println("buildRequestUrl:" + request);
+        return request;
     }
 }

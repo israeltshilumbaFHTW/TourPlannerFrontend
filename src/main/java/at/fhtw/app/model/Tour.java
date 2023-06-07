@@ -4,7 +4,9 @@ import at.fhtw.app.backendApi.TourApi;
 
 import javax.swing.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Tour {
     private Integer id;
@@ -20,7 +22,7 @@ public class Tour {
     private String routeInformation;
     private Integer popularity;
     private Double childFriendliness;
-
+    private List<TourLog> tourLogList;
     public Tour() {
     }
 
@@ -36,6 +38,7 @@ public class Tour {
         this.routeInformation = routeInformation;
         this.popularity = 0;
         this.childFriendliness = 0.00;
+        this.tourLogList = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -156,6 +159,14 @@ public class Tour {
 
     public void setChildFriendliness(Double childFriendliness) {
         this.childFriendliness = childFriendliness;
+    }
+
+    public List<TourLog> getTourLogList() {
+        return tourLogList;
+    }
+
+    public void setTourLogList(List<TourLog> tourLogList) {
+        this.tourLogList = tourLogList;
     }
 }
 
