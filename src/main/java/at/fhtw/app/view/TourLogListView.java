@@ -18,9 +18,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TourLogListView implements Initializable, TourListClickListener {
-    //displayed as: Date | Duration | Distance
 
-    public TourLogListViewModel tourLogListViewModel = new TourLogListViewModel();
+
+    public TourLogListViewModel tourLogListViewModel = TourLogListViewModel.getInstance();
     @FXML
     public AnchorPane tourLogForm;
     @FXML
@@ -39,7 +39,7 @@ public class TourLogListView implements Initializable, TourListClickListener {
     @Override
     public void changeSelection(Tour tour) {
         System.out.println("TourLogListView::changeSelection");
-        tourLogTable.setItems(tourLogListViewModel.getTourLogList(tour));
+        tourLogTable.setItems(tourLogListViewModel.getTourLogList(tour.getId()));
     }
 
     @Override

@@ -9,13 +9,28 @@ import javafx.collections.ObservableList;
 import java.util.List;
 
 public class TourLogListViewModel {
+    private static TourLogListViewModel TourLogListViewModelInstance = null;
     private final TourApi tourApi = new TourApi();
 
     private final ObservableList<TourLog> tourLogList = FXCollections.observableArrayList();
 
-    public ObservableList<TourLog> getTourLogList(Tour tour) {
+    private TourLogListViewModel() {
+
+    }
+
+    public static TourLogListViewModel getInstance() {
+        if (TourLogListViewModelInstance == null) {
+            TourLogListViewModelInstance = new TourLogListViewModel();
+        }
+        return TourLogListViewModelInstance;
+    }
+
+    public ObservableList<TourLog> getTourLogList(int tourId) {
         tourLogList.clear();
-        tour.getTourLogList().forEach(this::addItem);
+        List<TourLog> tourLogList = tourApi.getAllTourLogs(tourId);
+        tourLogList.forEach(this::addItem);
+        //TODO: get Data from API directly not just the class, this makes post/get easier later on
+        //tour.getTourLogList().forEach(this::addItem);
         return this.tourLogList;
     }
 
@@ -26,5 +41,11 @@ public class TourLogListViewModel {
 
     public void initList() {
         //get Data from API
+    }
+
+    public void updateList(int tourId) {
+        System.out.println("UPDATE LOG LIST");
+        this.tourLogList.clear();
+        List<TourLog> tourLogList = tourApi.getAllTourLogs(tourId);
     }
 }

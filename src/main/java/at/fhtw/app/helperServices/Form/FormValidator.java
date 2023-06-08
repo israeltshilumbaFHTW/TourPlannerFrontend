@@ -3,6 +3,9 @@ package at.fhtw.app.helperServices.Form;
 import at.fhtw.app.helperServices.CustomExceptions.InvalidInputException;
 import at.fhtw.app.helperServices.Enums.FormMessages;
 import at.fhtw.app.model.FormTour;
+import at.fhtw.app.model.Tour;
+import at.fhtw.app.model.TourLog;
+import at.fhtw.app.viewModel.TourListViewModel;
 
 import java.util.regex.Pattern;
 
@@ -10,7 +13,7 @@ public class FormValidator {
     private static final Pattern SPECIAL_CHARACTERS =
             Pattern.compile("[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]");
 
-    public boolean validateInput(FormTour formTour) throws InvalidInputException {
+    public void validateInput(FormTour formTour) throws InvalidInputException {
         //return false if it doesn't find anything
         //if it finds anything, throw a  InvalidInputException
 
@@ -52,6 +55,25 @@ public class FormValidator {
             throw new InvalidInputException(FormMessages.INVALID_TRANSPORT_TYPE.getMessage());
         }
 
-        return true; //return true if the input is clean
+    }
+
+    public void validateInput(TourLog tourLog) throws InvalidInputException {
+        if (SPECIAL_CHARACTERS.matcher(tourLog.getComment()).find()) {
+            throw new InvalidInputException(FormMessages.INVALID_LOG_COMMENT.getMessage());
+        }
+
+        //check if its empty
+        if (tourLog.getComment().isEmpty()) {
+            throw new InvalidInputException(FormMessages.INVALID_LOG_COMMENT.getMessage());
+        }
+        if (tourLog.getDate().isEmpty()) {
+            throw new InvalidInputException(FormMessages.INVALID_LOG_DATE.getMessage());
+        }
+        if (tourLog.getDifficulty() == null) {
+            throw new InvalidInputException(FormMessages.INVALID_LOG_DIFFICULTY.getMessage());
+        }
+        if (tourLog.getRating() == null) {
+            throw new InvalidInputException(FormMessages.INVALID_LOG_RATING.getMessage());
+        }
     }
 }

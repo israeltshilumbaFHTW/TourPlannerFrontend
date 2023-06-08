@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="339.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="at.fhtw.app.view.TourLogFormView">
+            fx:controller="at.fhtw.app.view.TourLogFormView" fx:id="tourLogForm">
     <Label layoutX="111.0" layoutY="8.0" text="Add Tour Log"/>
     <Label layoutX="18.0" layoutY="34.0" text="Comment"/>
     <Label layoutX="17.0" layoutY="110.0" text="Difficulty"/>

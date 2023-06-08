@@ -9,6 +9,7 @@ import at.fhtw.app.helperServices.Enums.ApiEndpoints;
 import at.fhtw.app.helperServices.Enums.ApiResponse;
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
+import at.fhtw.app.model.TourLogPostModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,12 +51,12 @@ public class TourApi {
         }
     }
 
-    public String postTour(Tour Tour) {
+    public String postTour(Tour tour) {
         HttpPost request = new HttpPost(ApiEndpoints.POST_TOUR.getEndPoint());
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            String tourJson = objectMapper.writeValueAsString(Tour);
+            String tourJson = objectMapper.writeValueAsString(tour);
             StringEntity requestEntity = new StringEntity(tourJson);
 
             request.setEntity(requestEntity);
@@ -80,7 +81,55 @@ public class TourApi {
         }
     }
 
-    public List<TourLog> getAllTourLogs(Tour tour) {
-        return tour.getTourLogList();
+    public List<TourLog> getAllTourLogs(int tourId) {
+        HttpGet request = new HttpGet(ApiEndpoints.GET_TOUR_LOGS.getEndPoint() + tourId);
+        List<TourLog> tourLogList = new ArrayList<>();
+
+        try {
+            HttpResponse response = client.execute(request);
+            String responseBody = EntityUtils.toString(response.getEntity());
+
+            JSONArray tourLogArray = new JSONArray(responseBody);
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            System.out.println(tourLogArray);
+            tourLogList = objectMapper.readValue(tourLogArray.toString(), new TypeReference<List<TourLog>>() {
+            });
+
+            return tourLogList;
+        } catch (IOException e) {
+            //do stuff
+            return new ArrayList<>();
+        }
+    }
+
+    public String postTourLog(TourLog tourLog, int tourId) {
+        HttpPost request = new HttpPost(ApiEndpoints.POST_TOUR_LOGS.getEndPoint() + tourId);
+        try {
+            TourLogPostModel tourLogPostModel = new TourLogPostModel(tourLog.getDate(), tourLog.getComment(), tourLog.getDifficulty(), tourLog.getTotalTime(), tourLog.getRating());
+            ObjectMapper objectMapper = new ObjectMapper();
+            String tourLogJson = objectMapper.writeValueAsString(tourLogPostModel);
+            StringEntity requestEntity = new StringEntity(tourLogJson);
+
+            request.setEntity(requestEntity);
+            request.setHeader("Content-type", "application/json");
+            System.out.println(Arrays.toString(request.getAllHeaders()));
+
+            HttpResponse response = client.execute(request);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if (statusCode == 200) {
+                String responseBody = EntityUtils.toString(response.getEntity());
+                //JSONObject responseJson = new JSONObject(responseBody);
+                //String message = responseJson.getString("message");
+                //System.out.println("Response: " + message);
+                return ApiResponse.SUCCESS.getResponseMessage();
+            } else {
+                return ApiResponse.FAIL.getResponseMessage();
+            }
+        } catch (IOException e) {
+            // Handle the exception
+            return null;
+        }
     }
 }

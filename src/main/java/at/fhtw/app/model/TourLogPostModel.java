@@ -1,39 +1,19 @@
 package at.fhtw.app.model;
 
-public class TourLog {
-    private Integer id;
+public class TourLogPostModel {
+
     private String date;
     private String comment;
     private Integer difficulty;
     private Integer totalTime;
     private Integer rating;
 
-    public TourLog() {
-    }
-
-    public TourLog(String date, String comment, Integer difficulty, Integer totalTime, Integer rating) {
+    public TourLogPostModel(String date, String comment, Integer difficulty, Integer totalTime, Integer rating) {
         this.date = date;
         this.comment = comment;
         this.difficulty = difficulty;
         this.totalTime = totalTime;
         this.rating = rating;
-    }
-
-    public TourLog(Integer id, String date, String comment, Integer difficulty, Integer totalTime, Integer rating) {
-        this.id = id;
-        this.date = date;
-        this.comment = comment;
-        this.difficulty = difficulty;
-        this.totalTime = totalTime;
-        this.rating = rating;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getDate() {
