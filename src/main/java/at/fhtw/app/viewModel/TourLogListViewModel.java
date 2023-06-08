@@ -27,6 +27,4 @@ public class TourLogListViewModel {
     public void initList() {
         //get Data from API
     }
-
-
 }

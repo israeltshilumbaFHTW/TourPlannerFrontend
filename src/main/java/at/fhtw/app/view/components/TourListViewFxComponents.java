@@ -12,4 +12,6 @@ public abstract class TourListViewFxComponents {
     public ScrollPane tourForm;
     @FXML
     public ChoiceBox<String> formTransportType = new ChoiceBox<>();
+    @FXML
+    public Button addButton;
 }
