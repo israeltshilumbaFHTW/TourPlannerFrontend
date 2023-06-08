@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="339.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.fhtw.app.view.TourLogFormView">
+    <Label layoutX="111.0" layoutY="8.0" text="Add Tour Log"/>
+    <Label layoutX="18.0" layoutY="34.0" text="Comment"/>
+    <Label layoutX="17.0" layoutY="110.0" text="Difficulty"/>
+    <Label layoutX="16.0" layoutY="156.0" text="Total Time"/>
+    <Label layoutX="22.0" layoutY="202.0" text="Rating"/>
+    <ChoiceBox fx:id="tourLogDifficulty" layoutX="101.0" layoutY="107.0" prefHeight="26.0" prefWidth="169.0"/>
+    <Label layoutX="26.0" layoutY="241.0" text="Date"/>
+    <DatePicker fx:id="tourLogDate" layoutX="101.0" layoutY="237.0" prefHeight="26.0" prefWidth="169.0"/>
+    <TextArea fx:id="tourLogComment" layoutX="19.0" layoutY="57.0" prefHeight="39.0" prefWidth="253.0"/>
+    <ChoiceBox fx:id="tourLogRating" layoutX="101.0" layoutY="198.0" prefHeight="26.0" prefWidth="169.0"/>
+    <TextField fx:id="tourLogTotalTime" layoutX="101.0" layoutY="152.0" prefHeight="26.0" prefWidth="169.0"/>
+    <Button layoutX="131.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#addTourLog" text="submit"/>
+</AnchorPane>

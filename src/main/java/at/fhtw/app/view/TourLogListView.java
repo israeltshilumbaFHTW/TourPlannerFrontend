@@ -7,9 +7,12 @@ import at.fhtw.app.viewModel.TourListViewModel;
 import at.fhtw.app.viewModel.TourLogListViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +21,8 @@ public class TourLogListView implements Initializable, TourListClickListener {
     //displayed as: Date | Duration | Distance
 
     public TourLogListViewModel tourLogListViewModel = new TourLogListViewModel();
+    @FXML
+    public AnchorPane tourLogForm;
     @FXML
     private TableView<TourLog> tourLogTable;
     @FXML
@@ -54,4 +59,14 @@ public class TourLogListView implements Initializable, TourListClickListener {
 
     }
 
+    public void addTourLogFormShow(MouseEvent mouseEvent) {
+        if (this.tourLogTable.isVisible()) {
+            this.tourLogTable.setVisible(false);
+            this.tourLogForm.setVisible(true);
+        } else {
+            this.tourLogTable.setVisible(true);
+            this.tourLogForm.setVisible(false);
+        }
+        System.out.println("Button clicked: startLogForm");
+    }
 }
