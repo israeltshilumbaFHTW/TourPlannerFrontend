@@ -12,7 +12,7 @@ public class Application extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("view/Application.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 600);
         //scene.getStylesheets().add("/styles/style.css");
-        stage.setWidth(800);
+        stage.setWidth(1000);
         stage.setTitle("Tour Planner");
         stage.setScene(scene);
         stage.show();

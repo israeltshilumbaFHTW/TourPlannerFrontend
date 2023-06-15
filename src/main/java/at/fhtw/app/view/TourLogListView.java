@@ -1,9 +1,11 @@
 package at.fhtw.app.view;
 
 import at.fhtw.app.helperServices.Listener.TourListClickListener;
+import at.fhtw.app.helperServices.Listener.TourLogListener;
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 import at.fhtw.app.viewModel.TourListViewModel;
+import at.fhtw.app.viewModel.TourLogFormViewModel;
 import at.fhtw.app.viewModel.TourLogListViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,10 +19,12 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TourLogListView implements Initializable, TourListClickListener {
+public class TourLogListView implements Initializable, TourListClickListener, TourLogListener {
 
 
     public TourLogListViewModel tourLogListViewModel = TourLogListViewModel.getInstance();
+    public TourLogFormViewModel tourLogFormViewModel = TourLogFormViewModel.getInstance();
+    public TourListViewModel tourListViewModel = TourListViewModel.getInstance();
     @FXML
     public AnchorPane tourLogForm;
     @FXML
@@ -38,15 +42,20 @@ public class TourLogListView implements Initializable, TourListClickListener {
 
     @Override
     public void changeSelection(Tour tour) {
-        System.out.println("TourLogListView::changeSelection");
+        System.out.println("TourLogListView::changeSelection::should set visible");
         tourLogTable.setItems(tourLogListViewModel.getTourLogList(tour.getId()));
+    }
+
+    @Override
+    public void onTourLogListUpdated() {
+        this.tourLogTable.setVisible(true);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle rb) {
         //tourLogTable.setItems((ObservableList<TourLog>) tourLogsListViewModel.getTourList().get(0).getTourLogList()); //gets Datatype "Tour"
-        TourListViewModel tourLogListViewModel = TourListViewModel.getInstance();
-        tourLogListViewModel.registerTourClickListener(this);
+        this.tourListViewModel.registerTourClickListener(this);
+        this.tourLogFormViewModel.registerTourLogListener(this);
         tourLogTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
@@ -69,4 +78,5 @@ public class TourLogListView implements Initializable, TourListClickListener {
         }
         System.out.println("Button clicked: startLogForm");
     }
+
 }

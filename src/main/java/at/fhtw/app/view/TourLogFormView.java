@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -37,9 +39,11 @@ public class TourLogFormView extends TourLogFormFxComponents implements Initiali
 
     public void addTourLog(MouseEvent mouseEvent) {
         System.out.println("Button clicked: addTourLog");
+        LocalDate selectedDate = this.tourLogDate.getValue();
+        String formattedDate = selectedDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         TourLog tourLog = new TourLog(
                 this.tourId,
-                this.tourLogDate.toString(),
+                formattedDate,
                 this.tourLogComment.getText(),
                 this.tourLogDifficulty.getValue(),
                 Integer.parseInt(this.tourLogTotalTime.getText()),

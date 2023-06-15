@@ -32,7 +32,7 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
 
         this.tourNamesList.setItems(tourListViewModel.getTourNameList());
         this.tourNamesList.setOnMouseClicked(this::handleTourSelection);
-        this.tourNamesList.getSelectionModel().select(0);
+        this.tourNamesList.getSelectionModel().selectFirst();
 
         //init ChoiceBox
         String[] choiceBoxChoices = {"public transit", "car", "bike", "foot"};
