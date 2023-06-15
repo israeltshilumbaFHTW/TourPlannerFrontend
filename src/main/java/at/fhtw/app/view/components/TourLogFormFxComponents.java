@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 public abstract class TourLogFormFxComponents {
-    protected FormInputManager formInputManager;
+    protected FormInputManager formInputManager = new FormInputManager();
     protected Alert alert = new Alert(Alert.AlertType.ERROR);
     protected Alert successPrompt = new Alert(Alert.AlertType.INFORMATION);
 

@@ -20,8 +20,9 @@ public class TourLogFormViewModel {
         return TourLogFormViewModelInstance;
     }
 
-    public void postTourLog(TourLog tourLog) {
-
+    public void postTourLog(TourLog tourLog, int tourId) {
+        System.out.println("POST tour LOG id: " + tourId);
+        this.tourApi.postTourLog(tourLog, tourId);
     }
 
 }

@@ -117,6 +117,7 @@ public class TourApi {
 
             HttpResponse response = client.execute(request);
             int statusCode = response.getStatusLine().getStatusCode();
+            System.out.println("POST Tour Log Status Code: " + statusCode);
 
             if (statusCode == 200) {
                 String responseBody = EntityUtils.toString(response.getEntity());

@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 public class TourLogFormView extends TourLogFormFxComponents implements Initializable, TourListClickListener {
 
     private int tourId;
+    TourLogFormViewModel tourLogFormViewModel = TourLogFormViewModel.getInstance();
     private final TourListViewModel tourListViewModel = TourListViewModel.getInstance();
     private final TourLogListViewModel tourLogListViewModel = TourLogListViewModel.getInstance();
 
@@ -26,6 +27,7 @@ public class TourLogFormView extends TourLogFormFxComponents implements Initiali
         Integer[] choiceBoxChoices = {1, 2, 3, 4, 5};
         this.tourLogDifficulty.getItems().addAll(choiceBoxChoices);
         this.tourLogRating.getItems().addAll(choiceBoxChoices);
+        this.tourListViewModel.registerTourClickListener(this);
     }
 
     @Override
@@ -35,7 +37,6 @@ public class TourLogFormView extends TourLogFormFxComponents implements Initiali
 
     public void addTourLog(MouseEvent mouseEvent) {
         System.out.println("Button clicked: addTourLog");
-        TourLogFormViewModel tourLogFormViewModel = TourLogFormViewModel.getInstance();
         TourLog tourLog = new TourLog(
                 this.tourId,
                 this.tourLogDate.toString(),
@@ -50,7 +51,7 @@ public class TourLogFormView extends TourLogFormFxComponents implements Initiali
         if (Objects.equals(validationString, FormMessages.VALID_FORM.getMessage())) {
             System.out.println(validationString);
 
-            tourLogFormViewModel.postTourLog(tourLog);
+            this.tourLogFormViewModel.postTourLog(tourLog, this.tourId);
             this.tourLogListViewModel.updateList(tourId);
 
             successPrompt.setTitle("Tour Log has been added");

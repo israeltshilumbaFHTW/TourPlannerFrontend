@@ -16,6 +16,7 @@ public abstract class TourListClickObserver {
     }
 
     public void notifyTourClickListeners(Tour selectedTour) {
+        System.out.println("selected Tour ID: " + selectedTour.getId());
         for (var listener : listeners) {
             listener.changeSelection(selectedTour);
         }
