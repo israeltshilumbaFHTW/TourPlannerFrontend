@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourFormView extends TourFormViewFxComponents implements Initializable {
 
 
@@ -30,7 +32,7 @@ public class TourFormView extends TourFormViewFxComponents implements Initializa
         TourFormViewModel tourFormViewModel = TourFormViewModel.getInstance();
         TourListViewModel tourListViewModel = TourListViewModel.getInstance();
 
-        System.out.println("Button clicked: addTour");
+        logger.debug("Button clicked: addTour");
         //validate Input
         FormTour formTour = new FormTour(formName.getText(), formDescription.getText(), formFrom.getText(), formTo.getText(), formTransportType.getValue(), formRouteInformation.getText());
         String validationString = formInputManager.validateForm(formTour);

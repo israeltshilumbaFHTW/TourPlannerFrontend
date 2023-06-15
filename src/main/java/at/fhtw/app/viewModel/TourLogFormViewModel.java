@@ -6,6 +6,8 @@ import at.fhtw.app.model.FormTour;
 import at.fhtw.app.model.TourLog;
 import at.fhtw.app.view.TourLogFormView;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourLogFormViewModel extends TourLogObserver {
     private static TourLogFormViewModel TourLogFormViewModelInstance = null;
     private final TourApi tourApi;
@@ -22,7 +24,7 @@ public class TourLogFormViewModel extends TourLogObserver {
     }
 
     public void postTourLog(TourLog tourLog, int tourId) {
-        System.out.println("POST tour LOG id: " + tourId);
+        logger.debug("POST tour LOG id: " + tourId);
         this.tourApi.postTourLog(tourLog, tourId);
         notifyTourLogListener();
     }

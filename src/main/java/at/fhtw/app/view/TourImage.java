@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourImage implements Initializable, TourListClickListener {
 
 
@@ -29,9 +31,9 @@ public class TourImage implements Initializable, TourListClickListener {
 
     @Override
     public void changeSelection(Tour tour) {
-        System.out.println("ChangeSelection Image");
+        logger.debug("ChangeSelection Image");
         Image image = new Image(tour.getImageUrl());
-        System.out.println("tourImageUrl:" + tour.getImageUrl());
+        logger.debug("tourImageUrl:" + tour.getImageUrl());
         routeImageView.setImage(image);
     }
 }

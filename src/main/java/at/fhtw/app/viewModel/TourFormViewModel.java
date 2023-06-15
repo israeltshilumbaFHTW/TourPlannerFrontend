@@ -8,6 +8,8 @@ import at.fhtw.app.model.Tour;
 
 import java.util.Date;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourFormViewModel {
     private static TourFormViewModel TourFormViewModelInstance = null;
     private final TourApi tourApi;
@@ -43,7 +45,7 @@ public class TourFormViewModel {
         //Get Image Url
 
         String response = tourApi.postTour(tour);
-        System.out.println(response);
+        logger.debug(response);
         //notify ListView to update
     }
 }

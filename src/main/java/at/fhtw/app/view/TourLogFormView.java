@@ -17,6 +17,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourLogFormView extends TourLogFormFxComponents implements Initializable, TourListClickListener {
 
     private int tourId;
@@ -38,7 +40,7 @@ public class TourLogFormView extends TourLogFormFxComponents implements Initiali
     }
 
     public void addTourLog(MouseEvent mouseEvent) {
-        System.out.println("Button clicked: addTourLog");
+        logger.debug("Button clicked: addTourLog");
         LocalDate selectedDate = this.tourLogDate.getValue();
         String formattedDate = selectedDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         TourLog tourLog = new TourLog(
@@ -53,7 +55,7 @@ public class TourLogFormView extends TourLogFormFxComponents implements Initiali
         //validate tourLog
         String validationString = formInputManager.validateForm(tourLog);
         if (Objects.equals(validationString, FormMessages.VALID_FORM.getMessage())) {
-            System.out.println(validationString);
+            logger.debug(validationString);
 
             this.tourLogFormViewModel.postTourLog(tourLog, this.tourId);
             this.tourLogListViewModel.updateList(tourId);

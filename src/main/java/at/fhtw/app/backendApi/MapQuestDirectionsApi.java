@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 
+import static at.fhtw.app.Application.logger;
+
 public class MapQuestDirectionsApi {
     private final FormTour formTour;
     private static final String API_KEY = "nathu9TckDPtj5j4LKlMMv2Zh0nxDlYg";
@@ -32,7 +34,7 @@ public class MapQuestDirectionsApi {
 
     public Directions getDirection() {
         // Build the API request URL
-        System.out.println("getDirection");
+        logger.debug("getDirection");
 
         try {
 
@@ -43,7 +45,7 @@ public class MapQuestDirectionsApi {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             parseJsonObject(directionsJSON);
-            System.out.println("Directions:" + directions);
+            logger.debug("Directions:" + directions);
 
 
             return this.directions;
@@ -88,12 +90,12 @@ public class MapQuestDirectionsApi {
 
         String baseUrl = "https://www.mapquestapi.com/directions/v2/route";
         String from = formTour.getFromLocation().replace(" ", "+");
-        System.out.println("from:" + from);
+        logger.debug("from:" + from);
         String to = formTour.getToLocation().replace(" ", "+");
         String routeType = formTour.getTransportType();
 
         String request = String.format("%s?key=%s&from=%s&to=%s&routeType=%s", baseUrl, API_KEY, from, to, routeType);
-        System.out.println("buildRequestUrl:" + request);
+        logger.debug("buildRequestUrl:" + request);
         return request;
     }
 }

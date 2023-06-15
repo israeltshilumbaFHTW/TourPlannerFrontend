@@ -11,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourListView extends TourListViewFxComponents implements TourListListener, Initializable {
 
     public TourListViewModel tourListViewModel;
@@ -27,6 +29,7 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logger.debug("initialize TourListView");
         tourListViewModel.registerTourNameListObserver(this);
         //init List
 
@@ -40,7 +43,7 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
     }
 
     private void handleTourSelection(MouseEvent event) {
-        System.out.println("handleTourSelection");
+        logger.debug("handle TourSelection");
         int selectedTourIndex = tourNamesList.getSelectionModel().getSelectedIndex();
         this.tourListViewModel.selectTour(selectedTourIndex);
 
@@ -53,7 +56,7 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
     }
 
     public void updateTourList() {
-        System.out.println("UPDATE TOUR LIST: TourListView");
+        logger.debug("UPDATE TOUR LIST: TourListView");
         this.tourNamesList.refresh();
     }
 
@@ -67,6 +70,6 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
             tourNamesList.setVisible(true);
             tourForm.setVisible(false);
         }
-        System.out.println("Button clicked: startForm");
+        logger.debug("Button clicked: startForm");
     }
 }

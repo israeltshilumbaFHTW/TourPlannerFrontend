@@ -24,11 +24,13 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourApi {
     private final HttpClient client = HttpClientBuilder.create().build();
 
-    public List <Tour> getAllTours() {
-        System.out.println("getAllTours");
+    public List<Tour> getAllTours() {
+        logger.debug("getAllTours");
         HttpGet request = new HttpGet(ApiEndpoints.GET_TOURS.getEndPoint());
         List<Tour> tourList;
 
@@ -40,7 +42,7 @@ public class TourApi {
             JSONArray toursArray = new JSONArray(responseBody);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            System.out.println(toursArray);
+            logger.debug(toursArray);
             tourList = objectMapper.readValue(toursArray.toString(), new TypeReference<List<Tour>>() {
             });
 
@@ -61,7 +63,7 @@ public class TourApi {
 
             request.setEntity(requestEntity);
             request.setHeader("Content-type", "application/json");
-            System.out.println(Arrays.toString(request.getAllHeaders()));
+            logger.debug(Arrays.toString(request.getAllHeaders()));
 
             HttpResponse response = client.execute(request);
             int statusCode = response.getStatusLine().getStatusCode();
@@ -70,7 +72,7 @@ public class TourApi {
                 String responseBody = EntityUtils.toString(response.getEntity());
                 JSONObject responseJson = new JSONObject(responseBody);
                 String message = responseJson.getString("message");
-                System.out.println("Response: " + message);
+                logger.debug("Response: " + message);
                 return ApiResponse.SUCCESS.getResponseMessage();
             } else {
                 return ApiResponse.FAIL.getResponseMessage();
@@ -92,7 +94,7 @@ public class TourApi {
             JSONArray tourLogArray = new JSONArray(responseBody);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            System.out.println(tourLogArray);
+            logger.debug(tourLogArray);
             tourLogList = objectMapper.readValue(tourLogArray.toString(), new TypeReference<List<TourLog>>() {
             });
 
@@ -113,19 +115,20 @@ public class TourApi {
 
             request.setEntity(requestEntity);
             request.setHeader("Content-type", "application/json");
-            System.out.println(Arrays.toString(request.getAllHeaders()));
+            logger.debug(Arrays.toString(request.getAllHeaders()));
 
             HttpResponse response = client.execute(request);
             int statusCode = response.getStatusLine().getStatusCode();
-            System.out.println("POST Tour Log Status Code: " + statusCode);
+            logger.debug("POST Tour Log Status Code: " + statusCode);
 
             if (statusCode == 200) {
                 String responseBody = EntityUtils.toString(response.getEntity());
                 //JSONObject responseJson = new JSONObject(responseBody);
                 //String message = responseJson.getString("message");
-                //System.out.println("Response: " + message);
+                logger.debug(ApiResponse.SUCCESS.getResponseMessage());
                 return ApiResponse.SUCCESS.getResponseMessage();
             } else {
+                logger.error(ApiResponse.FAIL.getResponseMessage());
                 return ApiResponse.FAIL.getResponseMessage();
             }
         } catch (IOException e) {

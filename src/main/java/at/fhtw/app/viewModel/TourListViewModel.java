@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.List;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourListViewModel extends TourListClickObserver {
     private static TourListViewModel TourListViewModelInstance = null;
     private final TourApi tourApi = new TourApi();
@@ -59,14 +61,14 @@ public class TourListViewModel extends TourListClickObserver {
     }
 
     public void updateList() {
-        System.out.println("UPDATE LIST");
+        logger.debug("UPDATE LIST");
         this.tourNameList.clear();
         this.tourList.clear();
 
         List<Tour> tourList = tourApi.getAllTours();
         tourList.forEach(this::addItem);
-        System.out.println("tourObjectSize" + this.tourList.size());
-        System.out.println("tourListSize" + tourNameList.size());
+        logger.debug("tourObjectSize" + this.tourList.size());
+        logger.debug("tourListSize" + tourNameList.size());
         notifyTourNameListObservers();
     }
 

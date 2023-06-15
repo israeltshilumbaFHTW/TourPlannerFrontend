@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 
 import java.util.List;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourLogListViewModel {
     private static TourLogListViewModel TourLogListViewModelInstance = null;
     private final TourApi tourApi = new TourApi();
@@ -44,7 +46,7 @@ public class TourLogListViewModel {
     }
 
     public void updateList(int tourId) {
-        System.out.println("UPDATE LOG LIST");
+        logger.debug("UPDATE LOG LIST");
         this.tourLogList.clear();
         List<TourLog> tourLogList = tourApi.getAllTourLogs(tourId);
     }

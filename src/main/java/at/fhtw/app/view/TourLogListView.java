@@ -19,6 +19,8 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static at.fhtw.app.Application.logger;
+
 public class TourLogListView implements Initializable, TourListClickListener, TourLogListener {
 
 
@@ -42,7 +44,7 @@ public class TourLogListView implements Initializable, TourListClickListener, To
 
     @Override
     public void changeSelection(Tour tour) {
-        System.out.println("TourLogListView::changeSelection::should set visible");
+        logger.debug("TourLogListView::changeSelection::should set visible");
         tourLogTable.setItems(tourLogListViewModel.getTourLogList(tour.getId()));
     }
 
@@ -76,7 +78,7 @@ public class TourLogListView implements Initializable, TourListClickListener, To
             this.tourLogTable.setVisible(true);
             this.tourLogForm.setVisible(false);
         }
-        System.out.println("Button clicked: startLogForm");
+        logger.debug("Button clicked: startLogForm");
     }
 
 }
