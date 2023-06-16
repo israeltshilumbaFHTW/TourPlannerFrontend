@@ -1,11 +1,15 @@
 package at.fhtw.app.view;
 
 import at.fhtw.app.helperServices.Form.FormInputManager;
+import at.fhtw.app.helperServices.Listener.TourListClickListener;
 import at.fhtw.app.helperServices.Listener.TourListListener;
+import at.fhtw.app.model.Tour;
 import at.fhtw.app.view.components.TourListViewFxComponents;
 import at.fhtw.app.viewModel.TourListViewModel;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -13,10 +17,11 @@ import java.util.ResourceBundle;
 
 import static at.fhtw.app.Application.logger;
 
-public class TourListView extends TourListViewFxComponents implements TourListListener, Initializable {
+public class TourListView extends TourListViewFxComponents implements TourListListener, Initializable, TourListClickListener {
 
     public TourListViewModel tourListViewModel;
     public FormInputManager formInputManager;
+    private int selectedTourIndex;
 
 
     public TourListView() {
@@ -30,7 +35,8 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logger.debug("initialize TourListView");
-        tourListViewModel.registerTourNameListObserver(this);
+        this.tourListViewModel.registerTourNameListObserver(this);
+        this.tourListViewModel.registerTourClickListener(this);
         //init List
 
         this.tourNamesList.setItems(tourListViewModel.getTourNameList());
@@ -44,7 +50,7 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
 
     private void handleTourSelection(MouseEvent event) {
         logger.debug("handle TourSelection");
-        int selectedTourIndex = tourNamesList.getSelectionModel().getSelectedIndex();
+        this.selectedTourIndex = tourNamesList.getSelectionModel().getSelectedIndex();
         this.tourListViewModel.selectTour(selectedTourIndex);
 
     }
@@ -71,5 +77,31 @@ public class TourListView extends TourListViewFxComponents implements TourListLi
             tourForm.setVisible(false);
         }
         logger.debug("Button clicked: startForm");
+    }
+
+    public void deleteTourFormShow(MouseEvent event) {
+
+        this.alert.setTitle("Confirmation Dialog");
+        this.alert.setHeaderText("Are you sure?");
+        this.alert.setContentText("DELETING TOUR ID: " + this.selectedTourIndex);
+
+        this.alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        this.alert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == confirmButton) {
+                logger.debug("User confirmed: Deleting entry with index: " + this.selectedTourIndex);
+                this.tourListViewModel.deleteTour(selectedTourIndex);
+                Platform.runLater(this::updateTourList);  //thread safe update
+                // Perform your desired action here
+            } else if (buttonType == cancelButton) {
+                logger.debug("User cancelled: entry with index: " + this.selectedTourIndex);
+            }
+        });
+    }
+
+    @Override
+    public void changeSelection(Tour tour) {
+
+        this.selectedTourIndex = tour.getId();
     }
 }

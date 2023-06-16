@@ -1,4 +1,5 @@
 package at.fhtw.app.backendApi;
+import at.fhtw.app.helperServices.Enums.ApiResponse;
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,13 @@ class TourApiTest {
     void postTourLog() {
         TourLog tourLog = new TourLog("10:10:2022", " pooop", 5, 40, 3);
         String response = this.tourApi.postTourLog(tourLog, 1);
+        System.out.println(response);
+    }
+
+    @Test
+    void deleteTour() {
+        String response = this.tourApi.deleteTour(2);
+        assertEquals(response, ApiResponse.DELETE_SUCCESS.getResponseMessage());
         System.out.println(response);
     }
 }

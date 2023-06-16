@@ -77,6 +77,14 @@ public class TourListViewModel extends TourListClickObserver {
         tourList.add(tour);
     }
 
+    public Boolean deleteTour(int tourId) {
+        //Todo: change this logic
+        String response = this.tourApi.deleteTour(tourId);
+        updateList();
+        notifyTourNameListObservers();
+        return true;
+    }
+
     public void selectTour(int tourIndex) {
         notifyTourClickListeners(this.tourList.get(tourIndex));
     }

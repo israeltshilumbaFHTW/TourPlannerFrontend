@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -73,9 +74,29 @@ public class TourApi {
                 JSONObject responseJson = new JSONObject(responseBody);
                 String message = responseJson.getString("message");
                 logger.debug("Response: " + message);
-                return ApiResponse.SUCCESS.getResponseMessage();
+                return ApiResponse.POST_SUCCESS.getResponseMessage();
             } else {
-                return ApiResponse.FAIL.getResponseMessage();
+                logger.fatal("TourAPI: status code: " + statusCode);
+                return ApiResponse.POST_FAIL.getResponseMessage();
+            }
+        } catch (IOException e) {
+            // Handle the exception
+            return null;
+        }
+    }
+
+    public String deleteTour(int tourId) {
+        HttpDelete request = new HttpDelete(ApiEndpoints.DELETE_TOUR.getEndPoint() + tourId);
+
+        try {
+            HttpResponse response = client.execute(request);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if (statusCode == 200) {
+                return ApiResponse.DELETE_SUCCESS.getResponseMessage();
+            } else {
+                logger.fatal("TourAPI: status code: " + statusCode);
+                return ApiResponse.DELETE_FAIL.getResponseMessage();
             }
         } catch (IOException e) {
             // Handle the exception
@@ -86,6 +107,7 @@ public class TourApi {
     public List<TourLog> getAllTourLogs(int tourId) {
         HttpGet request = new HttpGet(ApiEndpoints.GET_TOUR_LOGS.getEndPoint() + tourId);
         List<TourLog> tourLogList = new ArrayList<>();
+
 
         try {
             HttpResponse response = client.execute(request);
@@ -100,6 +122,7 @@ public class TourApi {
 
             return tourLogList;
         } catch (IOException e) {
+            logger.fatal("TourApi: Could not load all Tours");
             //do stuff
             return new ArrayList<>();
         }
@@ -125,11 +148,11 @@ public class TourApi {
                 String responseBody = EntityUtils.toString(response.getEntity());
                 //JSONObject responseJson = new JSONObject(responseBody);
                 //String message = responseJson.getString("message");
-                logger.debug(ApiResponse.SUCCESS.getResponseMessage());
-                return ApiResponse.SUCCESS.getResponseMessage();
+                logger.debug(ApiResponse.POST_SUCCESS.getResponseMessage());
+                return ApiResponse.POST_SUCCESS.getResponseMessage();
             } else {
-                logger.error(ApiResponse.FAIL.getResponseMessage());
-                return ApiResponse.FAIL.getResponseMessage();
+                logger.error(ApiResponse.POST_FAIL.getResponseMessage());
+                return ApiResponse.POST_FAIL.getResponseMessage();
             }
         } catch (IOException e) {
             // Handle the exception

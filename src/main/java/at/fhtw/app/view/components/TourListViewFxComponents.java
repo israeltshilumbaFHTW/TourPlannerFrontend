@@ -7,11 +7,17 @@ public abstract class TourListViewFxComponents {
 
     //FXML Components
     @FXML
-    public ListView<String> tourNamesList;
+    protected ListView<String> tourNamesList;
     @FXML
-    public ScrollPane tourForm;
+    protected ScrollPane tourForm;
     @FXML
-    public ChoiceBox<String> formTransportType = new ChoiceBox<>();
+    protected ChoiceBox<String> formTransportType = new ChoiceBox<>();
     @FXML
-    public Button addButton;
+    protected Button addButton;
+    @FXML
+    protected Button deleteButton;
+
+    protected Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    protected ButtonType confirmButton = new ButtonType("Yes");
+    protected ButtonType cancelButton = new ButtonType("No");
 }

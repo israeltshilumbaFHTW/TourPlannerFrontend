@@ -1,8 +1,10 @@
 package at.fhtw.app.helperServices.Enums;
 
 public enum ApiResponse {
-    SUCCESS("POST success"),
-    FAIL("POST failed");
+    POST_SUCCESS("POST success"),
+    POST_FAIL("POST failed"),
+    DELETE_SUCCESS("DELETE success"),
+    DELETE_FAIL("DELETE failed");
 
     private final String responseMessage;
 
