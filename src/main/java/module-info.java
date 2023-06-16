@@ -22,4 +22,5 @@ module at.fhtw.todolist {
     exports at.fhtw.app.helperServices.Enums to javafx.fxml;
     exports at.fhtw.app.view.components to javafx.fxml;
     exports at.fhtw.app.model.MapQuest to com.fasterxml.jackson.databind;
+    opens at.fhtw.app.viewModel to javafx.fxml;
 }
