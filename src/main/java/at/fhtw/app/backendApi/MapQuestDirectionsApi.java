@@ -19,7 +19,7 @@ import java.awt.image.BufferedImage;
 
 public class MapQuestDirectionsApi {
     private final FormTour formTour;
-    private static final String API_KEY = "nathu9TckDPtj5j4LKlMMv2Zh0nxDlYg";
+    private static final String API_KEY = "3Gsyqlz2pxqeqjLJJF1qhCUYB9hovBpV";
     private final HttpClient client = HttpClientBuilder.create().build();
     private final Directions directions = new Directions();
     HttpGet request;

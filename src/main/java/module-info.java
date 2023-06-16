@@ -6,6 +6,7 @@ module at.fhtw.todolist {
     requires org.json;
     requires com.fasterxml.jackson.databind;
     requires java.desktop;
+    requires itextpdf;
 
 
     opens at.fhtw.app.view to javafx.fxml;
