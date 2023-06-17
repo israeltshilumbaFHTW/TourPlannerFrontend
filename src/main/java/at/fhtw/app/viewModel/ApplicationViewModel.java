@@ -1,6 +1,7 @@
 package at.fhtw.app.viewModel;
 
 import at.fhtw.app.backendApi.TourApi;
+import at.fhtw.app.helperServices.Listener.TourListClickListener;
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 import at.fhtw.app.view.components.TourListViewFxComponents;
@@ -13,18 +14,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.fxml.Initializable;
 import org.json.JSONArray;
 
 import javax.swing.text.html.ListView;
 
-public class ApplicationViewModel extends TourListViewFxComponents {
+import static at.fhtw.app.Application.logger;
+
+public class ApplicationViewModel extends TourListViewFxComponents implements TourListClickListener, Initializable {
     public ListView listTours;
+    private int selectedTourIndex;
+
     @FXML
     public void createTourDirectoryReport(ActionEvent actionEvent) {
         String home = System.getProperty("user.home");
@@ -32,7 +40,7 @@ public class ApplicationViewModel extends TourListViewFxComponents {
 
         TourApi tourApi = new TourApi();
         List<Tour> tourList = tourApi.getAllTours();
-        System.out.println(tourList.toString());
+        logger.debug(tourList.toString());
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(destination));
@@ -56,7 +64,7 @@ public class ApplicationViewModel extends TourListViewFxComponents {
             }
 
             document.close();
-            System.out.println("PDF created");
+            logger.debug("PDF created");
         } catch (DocumentException | FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -86,13 +94,13 @@ public class ApplicationViewModel extends TourListViewFxComponents {
 
     @FXML
     public void createSingleTourReport(ActionEvent actionEvent) {
-        int selectedTourIndex = 1; // TODO: don't know how to do it, tried like this: 'tourNamesList.getSelectionModel().getSelectedIndex();', didn't work
+        //int selectedTourIndex = 1; // TODO: don't know how to do it, tried like this: 'tourNamesList.getSelectionModel().getSelectedIndex();', didn't work
         Tour tour;
 
         try {
             TourApi tourApi = new TourApi();
-            tour = tourApi.getTourWithIndex(selectedTourIndex);
-            // System.out.println(tour.getName()); // Wie kann er getName() verstehen, wenn ich in TourApi nirgendwo gesagt hab was der name ist, description, etc.?
+            tour = tourApi.getTourWithIndex(this.selectedTourIndex);
+            // logger.debug(tour.getName()); // Wie kann er getName() verstehen, wenn ich in TourApi nirgendwo gesagt hab was der name ist, description, etc.?
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -107,7 +115,7 @@ public class ApplicationViewModel extends TourListViewFxComponents {
             createTourDocument(document, tour);
 
             document.close();
-            System.out.println("PDF created");
+            logger.debug("PDF created");
         } catch (DocumentException | FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -153,15 +161,27 @@ public class ApplicationViewModel extends TourListViewFxComponents {
         try {
             JSONArray jsonArray = tourApi.getAllToursInfoJson(info);
             if (jsonArray == null) {
-                System.err.println("Can't export data!");
+                logger.error("Can't export data!");
                 return;
             }
-            System.out.println(jsonArray);
+            logger.debug(jsonArray);
             FileWriter fileWriter = new FileWriter(file);
             new ObjectMapper().writeValue(fileWriter, jsonArray.toString());
             fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void changeSelection(Tour tour) {
+        logger.debug("ApplicationViewModel: Tour ID: " + tour.getId());
+        this.selectedTourIndex = tour.getId();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TourListViewModel tourListViewModel = TourListViewModel.getInstance();
+        tourListViewModel.registerTourClickListener(this);
     }
 }
