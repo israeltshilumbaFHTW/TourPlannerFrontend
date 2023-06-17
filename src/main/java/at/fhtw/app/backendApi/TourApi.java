@@ -156,4 +156,30 @@ public class TourApi {
         }
     }
 
+    public JSONArray getAllToursInfoJson(String info) {
+        HttpGet request;
+        if (info == "tours") {
+            request = new HttpGet(ApiEndpoints.GET_TOURS.getEndPoint());
+        } else if (info == "logs") {
+            request = new HttpGet(ApiEndpoints.GET_TOUR_LOGS.getEndPoint());
+        } else
+            return null;
+        JSONArray tourJSONArray = null;
+
+        try {
+            HttpResponse response = client.execute(request);
+            if (response.getStatusLine().getStatusCode() == 404)
+            {
+                System.err.println("No Logs available (404)");
+                return null;
+            }
+            String responseBody = EntityUtils.toString(response.getEntity());
+
+            tourJSONArray = new JSONArray(responseBody);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return tourJSONArray;
+    }
 }

@@ -4,18 +4,22 @@ import at.fhtw.app.backendApi.TourApi;
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 import at.fhtw.app.view.components.TourListViewFxComponents;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.util.List;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.json.JSONArray;
 
 import javax.swing.text.html.ListView;
 
@@ -117,5 +121,47 @@ public class ApplicationViewModel extends TourListViewFxComponents {
         document.add(new Paragraph("Distance: " + tour.getDistance()));
         document.add(new Paragraph("Estimated Time: " + tour.getEstimatedTime()));
         document.add(new Paragraph("Transport Type: " + tour.getTransportType()));
+    }
+
+    public void importTour(ActionEvent actionEvent) {
+    }
+
+    public void importTourLogs(ActionEvent actionEvent) {
+    }
+
+    public void exportTours(ActionEvent actionEvent) {
+        TourApi tourApi = new TourApi();
+        String home = System.getProperty("user.home");
+        String destination = "/Downloads/allTours.json";
+        File file = new File(home + destination);
+        String info = "tours";
+
+        writeFile(tourApi, file, info);
+    }
+
+    public void exportTourLogs(ActionEvent actionEvent) {
+        TourApi tourApi = new TourApi();
+        String home = System.getProperty("user.home");
+        String destination = "/Downloads/allTourLogs.json";
+        File file = new File(home + destination);
+        String info = "logs";
+
+        writeFile(tourApi, file, info);
+    }
+
+    private static void writeFile(TourApi tourApi, File file, String info) {
+        try {
+            JSONArray jsonArray = tourApi.getAllToursInfoJson(info);
+            if (jsonArray == null) {
+                System.err.println("Can't export data!");
+                return;
+            }
+            System.out.println(jsonArray);
+            FileWriter fileWriter = new FileWriter(file);
+            new ObjectMapper().writeValue(fileWriter, jsonArray.toString());
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

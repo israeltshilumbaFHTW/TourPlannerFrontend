@@ -17,10 +17,19 @@
              AnchorPane.topAnchor="0.0">
         <Menu mnemonicParsing="false" text="File">
             <Menu text="Report">
+                <MenuItem onAction="#createTourDirectoryReport" text="All Tours"/>
                 <SeparatorMenuItem mnemonicParsing="false" />
-                <MenuItem onAction="#createTourDirectoryReport" text="All Tours" />
-                <SeparatorMenuItem mnemonicParsing="false" />
-                <MenuItem onAction="#createSingleTourReport" text="Selected Tour" />
+                <MenuItem onAction="#createSingleTourReport" text="Selected Tour"/>
+            </Menu>
+            <Menu text="Import">
+                <MenuItem onAction="#importTour" text="Import Tour"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem onAction="#importTourLogs" text="Import Tour Logs"/>
+            </Menu>
+            <Menu text="Export">
+                <MenuItem onAction="#exportTours" text="Export Tour"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem onAction="#exportTourLogs" text="Export Tour Logs"/>
             </Menu>
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close"/>
