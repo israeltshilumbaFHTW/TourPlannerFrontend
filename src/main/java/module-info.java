@@ -7,6 +7,7 @@ module at.fhtw.todolist {
     requires com.fasterxml.jackson.databind;
     requires java.desktop;
     requires org.apache.logging.log4j;
+    requires itextpdf;
 
 
     opens at.fhtw.app.view to javafx.fxml;
@@ -22,4 +23,5 @@ module at.fhtw.todolist {
     exports at.fhtw.app.helperServices.Enums to javafx.fxml;
     exports at.fhtw.app.view.components to javafx.fxml;
     exports at.fhtw.app.model.MapQuest to com.fasterxml.jackson.databind;
+    opens at.fhtw.app.viewModel to javafx.fxml;
 }

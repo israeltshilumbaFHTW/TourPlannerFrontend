@@ -104,6 +104,7 @@ public class TourApi {
         }
     }
 
+    // TODO: getTourLogsWithId() besserer Name?
     public List<TourLog> getAllTourLogs(int tourId) {
         HttpGet request = new HttpGet(ApiEndpoints.GET_TOUR_LOGS.getEndPoint() + tourId);
         List<TourLog> tourLogList = new ArrayList<>();
@@ -126,6 +127,27 @@ public class TourApi {
             //do stuff
             return new ArrayList<>();
         }
+    }
+
+    public Tour getTourWithIndex(int tourId) {
+        HttpGet request = new HttpGet(ApiEndpoints.GET_TOUR.getEndPoint() + tourId);
+        Tour tour = new Tour();
+
+        try {
+            HttpResponse response = client.execute(request);
+            String responseBody = EntityUtils.toString(response.getEntity());
+
+            JSONObject tourJSONObject = new JSONObject(responseBody);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+            tour = objectMapper.readValue(tourJSONObject.toString(), Tour.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return tour;
     }
 
     public String postTourLog(TourLog tourLog, int tourId) {
@@ -158,5 +180,32 @@ public class TourApi {
             // Handle the exception
             return null;
         }
+    }
+
+    public JSONArray getAllToursInfoJson(String info) {
+        HttpGet request;
+        if (info == "tours") {
+            request = new HttpGet(ApiEndpoints.GET_TOURS.getEndPoint());
+        } else if (info == "logs") {
+            request = new HttpGet(ApiEndpoints.GET_TOUR_LOGS.getEndPoint());
+        } else
+            return null;
+        JSONArray tourJSONArray = null;
+
+        try {
+            HttpResponse response = client.execute(request);
+            if (response.getStatusLine().getStatusCode() == 404)
+            {
+                System.err.println("No Logs available (404)");
+                return null;
+            }
+            String responseBody = EntityUtils.toString(response.getEntity());
+
+            tourJSONArray = new JSONArray(responseBody);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return tourJSONArray;
     }
 }
