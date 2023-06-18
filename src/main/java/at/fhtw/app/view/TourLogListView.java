@@ -24,7 +24,7 @@ public class TourLogListView extends TourLogListViewComponents implements Initia
     public void changeSelection(Tour tour) {
         logger.debug("TourLogListView::changeSelection::should set visible");
         this.tourId = tour.getId();//important for delete
-        tourLogTable.setItems(tourLogListViewModel.getTourLogList(tour.getId()));
+        this.tourLogTable.setItems(tourLogListViewModel.getTourLogList(tour.getId()));
     }
 
     @Override
