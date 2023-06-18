@@ -17,7 +17,8 @@
                 prefHeight="18.0" prefWidth="15.0" text="+" AnchorPane.rightAnchor="54.0"/>
         <Button layoutX="548.0" layoutY="3.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="15.0" text="..."
                 AnchorPane.rightAnchor="0.0"/>
-        <Button layoutX="521.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" text="-"
+        <Button onMouseClicked="#deleteTourLogForm" layoutX="521.0" layoutY="3.0" mnemonicParsing="false"
+                prefHeight="26.0" prefWidth="26.0" text="-"
                 AnchorPane.rightAnchor="27.0"/>
     </AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="419.0">

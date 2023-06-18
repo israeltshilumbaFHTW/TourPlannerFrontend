@@ -17,6 +17,7 @@ public class TourLogListViewModel extends TourLogListClickObserver {
 
     private final ObservableList<TourLog> tourLogList = FXCollections.observableArrayList();
 
+    private int selectedTourLogIndex;
     private TourLogListViewModel() {
 
     }
@@ -54,5 +55,16 @@ public class TourLogListViewModel extends TourLogListClickObserver {
 
     public void selectTourLog(int selectedTourLogIndex) {
         notifyTourLogClickListeners(this.tourLogList.get(selectedTourLogIndex));
+    }
+
+    public Boolean deleteTourLog(int tourLogId, int tourId) {
+        String response = this.tourApi.deleteTourLog(tourLogId);
+        updateList(tourId);
+        return true;
+    }
+
+    public void setSelectedTourLogIndex(int tourLogIndex) {
+        this.tourLogList.get(tourLogIndex);
+        this.selectedTourLogIndex = tourLogIndex;
     }
 }

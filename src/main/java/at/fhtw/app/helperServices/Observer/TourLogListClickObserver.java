@@ -1,8 +1,6 @@
 package at.fhtw.app.helperServices.Observer;
 
-import at.fhtw.app.helperServices.Listener.TourListClickListener;
 import at.fhtw.app.helperServices.Listener.TourLogListClickListener;
-import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ import static at.fhtw.app.Application.logger;
 public abstract class TourLogListClickObserver {
     private final List<TourLogListClickListener> listeners = new ArrayList<>();
 
-    public void registerTourClickListener(TourLogListClickListener tourLogListClickListener) {
+    public void registerTouLogClickListener(TourLogListClickListener tourLogListClickListener) {
         logger.debug("register: TourLogListClickListener");
         this.listeners.add(tourLogListClickListener);
     }
