@@ -6,12 +6,14 @@ import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 import at.fhtw.app.view.ApplicationView;
 import at.fhtw.app.view.components.TourListViewFxComponents;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import org.json.JSONObject;
 
@@ -135,23 +137,47 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
     public String importTour() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
-        //Tour tour;
+        Tour tour;
 
         // Show the file chooser dialog
         File selectedFile = fileChooser.showOpenDialog(null);
+
+
         if (selectedFile != null) {
             try {
                 // Read the content of the selected JSON file
                 String fileContent = Files.readString(selectedFile.toPath());
-                return fileContent;
+                fileContent = removeFirstAndLastCharacter(fileContent);
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                tour = objectMapper.readValue(fileContent, Tour.class);
+
+                System.out.println(tour.getName());
+
+                // Print the file content in the terminal
+                System.out.println(fileContent);
+                return "success";
             } catch (IOException e) {
                 e.printStackTrace();
                 // Display an error message if there was an error reading the file
-                ApplicationView applicationView = new ApplicationView();
-                applicationView.importError();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("File Read Error");
+                alert.setContentText("An error occurred while reading the file.");
+                alert.showAndWait();
+                return "fail";
             }
         }
-        return null;
+        return "success";
+    }
+
+    public static String removeFirstAndLastCharacter(String str) {
+        if (str.length() <= 2) {
+            return "";
+        } else {
+            return str.substring(1, str.length() - 1);
+        }
     }
 
     public void exportTour() {

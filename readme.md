@@ -44,40 +44,49 @@ die neuen Daten. Ein ViewModel kann auch mehrere Datensätze beobachten und eine
 Observern anmelden.
 
 ## Unit Tests
+Da es sehr schwer ist die Views direkt zu testen, wurden vor allem die ViewModels und andere Komponente,
+die Logik besitzen getestet. So wird zum Beispiel die User Input Validation rigoros getestet, damit es
+nicht zu unerwarteten crashes kommt. Ebenfalls wurde die Api zum Frontend getestet, damit wir eine verlässliche
+Schnittstelle zwischen Frontend und Backend haben.
 
 ### Lessons learned
+
+- Die Verwendung von Code Patterns haben die Qualität und Übersichtlichkeit dieses Projekts deutlich verbessert.
+  Sie haben dem Code eine gute Struktur gegeben, sodass man sich sehr schnell auskennt und weniger Spaghetti Code
+  programmiert.
 - Die Integration eines Protokollierungsframeworks (log4j) hat enorm dabei geholfen, Laufzeitinformationen zu erfassen
-und Fehler effektiv zu diagnostizieren. Nächstes Mal werden wir so ein Framework früher einsetzen um von Anfang Bugs
-erkennen zu können.
+  und Fehler effektiv zu diagnostizieren. Nächstes Mal werden wir so ein Framework früher einsetzen um von Anfang Bugs
+  erkennen zu können.
 - Umfassendes Unit-Testing hat die Korrektheit unseres Codes gewährleistet und hat stark dazu beigetragen, mit
-Sicherheit sagen zu können, dass der code funktioniert.
+  Sicherheit sagen zu können, dass der code funktioniert.
 - Rechtzeitig beginnen und gegen Ende einer Abgabe Stress ersparen
-- Git Conflicts sind aufwendig, aber können mit geeigneten Vorbeugemaßnahmen weitgehend verhindert werden: 
+- Git Conflicts sind aufwendig, aber können mit geeigneten Vorbeugemaßnahmen weitgehend verhindert werden:
   - Commits klein und fokussiert halten
   - In separaten Branches arbeiten
   - Regelmäßig lokalen Branch aktualisieren
 ### Time Tracking
+
 | Date           | Time | Comment                                |
 |----------------|------|----------------------------------------|
-|                |      | Set up database                        |
-|                |      | Docker Setup                           |
-|                |      | Create GitHub-Repository               |
-|                |      | Set up Springboot                      |
-|                |      | Setting up OR-Mapping Library          |
-|                |      | Setting up MapQuest/Static Map API     |
-|                |      | log4j                                  |
-|                |      | Create tour                            |
-|                |      | Delete tour                            |
-|                |      | Validate user-input                    |
-|                |      | Create tour-logs                       |
-|                |      | Delete tour-logs                       |
+|                | 1    | Set up database                        |
+|                | 1    | Docker Setup                           |
+|                | 1    | Create GitHub-Repository               |
+|                | 3    | Set up Springboot                      |
+|                | 2    | Setting up OR-Mapping Library          |
+|                | 3    | Setting up MapQuest/Static Map API     |
+|                | 1    | log4j                                  |
+|                | 6    | Create tour                            |
+|                | 1.5  | Delete tour                            |
+|                | 1    | Validate user-input                    |
+|                | 5    | Create tour-logs                       |
+|                | 2    | Delete tour-logs                       |
 |                |      | Unique feature                         |
-|                |      | Frontend-Design                        |
+|                | 5    | Frontend-Design                        |
 | 17.06          | 7    | Report-generation                      |
 | 17.06 - 18.06  | 8    | Import/Export JSON Files               |
 | 18.06          | 2    | Last Unit Tests                        |
 | /              | 20   | Bugfixing, small adjustments, Protocol |
-| <b>Overall</b> |      |                                        |
+| <b>Overall</b> | 69.5 |                                        |
 
 
 ### VCS link
