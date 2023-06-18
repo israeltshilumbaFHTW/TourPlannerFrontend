@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static at.fhtw.app.Application.logger;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TourApiTest {
@@ -30,13 +31,20 @@ class TourApiTest {
     void postTourLog() {
         TourLog tourLog = new TourLog("10:10:2022", " pooop", 5, 40, 3);
         String response = this.tourApi.postTourLog(tourLog, 1);
-        System.out.println(response);
+        logger.debug(response);
     }
 
     @Test
     void deleteTour() {
         String response = this.tourApi.deleteTour(2);
         assertEquals(response, ApiResponse.DELETE_SUCCESS.getResponseMessage());
-        System.out.println(response);
+        logger.debug(response);
+    }
+
+    @Test
+    void deleteTourLog() {
+        String response = this.tourApi.deleteTourLog(1);
+        assertEquals(response, ApiResponse.DELETE_SUCCESS.getResponseMessage());
+        logger.debug(response);
     }
 }

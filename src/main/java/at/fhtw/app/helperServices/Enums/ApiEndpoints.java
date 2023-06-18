@@ -6,7 +6,8 @@ public enum ApiEndpoints {
     POST_TOUR("http://localhost:8080/tours"),
     GET_TOUR_LOGS("http://localhost:8080/tourLogs/"),
     POST_TOUR_LOGS("http://localhost:8080/tourLogs/"),
-    DELETE_TOUR("http://localhost:8080/tours/");
+    DELETE_TOUR("http://localhost:8080/tours/"),
+    DELETE_TOUR_LOG("http://localhost:8080/tourLogs/delete/");
 
 
     private final String endPoint;

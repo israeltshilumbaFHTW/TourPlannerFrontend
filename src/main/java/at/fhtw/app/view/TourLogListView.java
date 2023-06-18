@@ -41,6 +41,7 @@ public class TourLogListView implements Initializable, TourListClickListener, To
     private TableColumn<TourLog, Double> tourLogTotalTime;
     @FXML
     private TableColumn<TourLog, Integer> tourLogRating;
+    private int selectedTourLogIndex;
 
     @Override
     public void changeSelection(Tour tour) {
@@ -58,7 +59,8 @@ public class TourLogListView implements Initializable, TourListClickListener, To
         //tourLogTable.setItems((ObservableList<TourLog>) tourLogsListViewModel.getTourList().get(0).getTourLogList()); //gets Datatype "Tour"
         this.tourListViewModel.registerTourClickListener(this);
         this.tourLogFormViewModel.registerTourLogListener(this);
-        tourLogTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.tourLogTable.setOnMouseClicked(this::handleTourLogSelection);
+        this.tourLogTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
         tourLogDate.setCellValueFactory(new PropertyValueFactory<TourLog, String>("date")); //name of variable in TourLog
@@ -68,6 +70,12 @@ public class TourLogListView implements Initializable, TourListClickListener, To
         tourLogRating.setCellValueFactory(new PropertyValueFactory<TourLog, Integer>("rating"));
 
 
+    }
+
+    private void handleTourLogSelection(MouseEvent event) {
+        logger.debug("handle TourLogSelection");
+        this.selectedTourLogIndex = this.tourLogTable.getSelectionModel().getSelectedIndex();
+        this.tourLogListViewModel.selectTourLog(this.selectedTourLogIndex);
     }
 
     public void addTourLogFormShow(MouseEvent mouseEvent) {

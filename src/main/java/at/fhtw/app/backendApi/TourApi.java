@@ -104,6 +104,25 @@ public class TourApi {
         }
     }
 
+    public String deleteTourLog(int tourLogId) {
+        HttpDelete request = new HttpDelete(ApiEndpoints.DELETE_TOUR_LOG.getEndPoint() + tourLogId);
+        try {
+            HttpResponse response = client.execute(request);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if (statusCode == 200) {
+                return ApiResponse.DELETE_SUCCESS.getResponseMessage();
+            } else {
+                logger.fatal("TourAPI: status code: " + statusCode);
+                return ApiResponse.DELETE_FAIL.getResponseMessage();
+            }
+        } catch (IOException e) {
+            // Handle the exception
+            return null;
+        }
+    }
+
+
     // TODO: getTourLogsWithId() besserer Name?
     public List<TourLog> getAllTourLogs(int tourId) {
         HttpGet request = new HttpGet(ApiEndpoints.GET_TOUR_LOGS.getEndPoint() + tourId);

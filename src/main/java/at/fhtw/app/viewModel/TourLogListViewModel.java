@@ -1,6 +1,7 @@
 package at.fhtw.app.viewModel;
 
 import at.fhtw.app.backendApi.TourApi;
+import at.fhtw.app.helperServices.Observer.TourLogListClickObserver;
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 import javafx.collections.FXCollections;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import static at.fhtw.app.Application.logger;
 
-public class TourLogListViewModel {
+public class TourLogListViewModel extends TourLogListClickObserver {
     private static TourLogListViewModel TourLogListViewModelInstance = null;
     private final TourApi tourApi = new TourApi();
 
@@ -49,5 +50,9 @@ public class TourLogListViewModel {
         logger.debug("UPDATE LOG LIST");
         this.tourLogList.clear();
         List<TourLog> tourLogList = tourApi.getAllTourLogs(tourId);
+    }
+
+    public void selectTourLog(int selectedTourLogIndex) {
+        notifyTourLogClickListeners(this.tourLogList.get(selectedTourLogIndex));
     }
 }
