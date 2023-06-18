@@ -2,7 +2,6 @@ package at.fhtw.app.viewModel;
 
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
-import at.fhtw.app.view.GeneralView;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class GeneralViewModel {
         return tour.getTourLogList().size();
     }
 
-    public Double getPopularity(Tour tour) {
+    public String getAvgRating(Tour tour) {
         int tourLogSize = getTourLogSize(tour);
         List<TourLog> tourLogList;
         tourLogList = tour.getTourLogList();
@@ -36,15 +35,15 @@ public class GeneralViewModel {
             absoluteRating += tourLog.getRating();
         }
         relativeRating = (double) absoluteRating / tourLogSize;
+        int decimalPlaces = 2;
 
-        return relativeRating;
+        return String.format("%." + decimalPlaces + "f", relativeRating);
     }
 
     public String getChildFriendliness(Tour tour) {
         int tourLogSize = getTourLogSize(tour);
         logger.debug("GeneralViewModel: getChildFriendliness TourLog Size: " + tourLogSize);
         //child friendliness
-        String childFriendliness;
         int absoluteTourNumber = 0;
 
         for (TourLog tourLog : tour.getTourLogList()) {

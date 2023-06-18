@@ -41,8 +41,23 @@ public class TourLogFormView extends TourLogFormFxComponents implements Initiali
 
     public void addTourLog(MouseEvent mouseEvent) {
         logger.debug("Button clicked: addTourLog");
+        if (this.tourLogDate.getValue() == null) {
+            alert.setTitle("INVALID INPUT");
+            alert.setContentText("Date cannot be empty");
+            alert.setHeaderText("");
+            alert.showAndWait();
+            return;
+        }
+        if (Objects.equals(this.tourLogTotalTime.getText(), "")) {
+            alert.setTitle("INVALID INPUT");
+            alert.setContentText("Total Time cannot be empty");
+            alert.setHeaderText("");
+            alert.showAndWait();
+            return;
+        }
         LocalDate selectedDate = this.tourLogDate.getValue();
         String formattedDate = selectedDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
         TourLog tourLog = new TourLog(
                 this.tourId,
                 formattedDate,

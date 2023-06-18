@@ -3,17 +3,13 @@ package at.fhtw.app.view;
 import at.fhtw.app.helperServices.Listener.TourListClickListener;
 import at.fhtw.app.helperServices.Listener.TourLogListener;
 import at.fhtw.app.model.Tour;
-import at.fhtw.app.model.TourLog;
 import at.fhtw.app.view.components.GeneralViewFxComponents;
 import at.fhtw.app.viewModel.GeneralViewModel;
 import at.fhtw.app.viewModel.TourListViewModel;
-import at.fhtw.app.viewModel.TourLogFormViewModel;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static at.fhtw.app.Application.logger;
 
 public class GeneralView extends GeneralViewFxComponents implements TourListClickListener, Initializable, TourLogListener {
     private GeneralViewModel generalViewModel = GeneralViewModel.getInstance();
@@ -29,7 +25,7 @@ public class GeneralView extends GeneralViewFxComponents implements TourListClic
         this.routeInformation.setText(tour.getRouteInformation());
         this.tourPopularity.setText(Integer.toString(tourLogSize));
         this.tourChildFriendliness.setText(this.generalViewModel.getChildFriendliness(tour));
-        this.rating.setText(Double.toString(this.generalViewModel.getPopularity(tour)));
+        this.rating.setText(this.generalViewModel.getAvgRating(tour));
     }
 
     @Override
