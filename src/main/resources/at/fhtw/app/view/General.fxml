@@ -23,4 +23,7 @@
           text="Popularity"/>
     <Text fx:id="tourChildFriendliness" layoutX="193.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0"
           text="child-friendliness"/>
+    <Label layoutX="192.0" layoutY="230.0" text="Average Rating:"/>
+    <Text fx:id="rating" layoutX="193.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="avg. rating"/>
 </AnchorPane>

@@ -21,4 +21,6 @@ abstract public class GeneralViewFxComponents {
     protected Text tourPopularity;
     @FXML
     protected Text tourChildFriendliness;
+    @FXML
+    protected Text rating;
 }

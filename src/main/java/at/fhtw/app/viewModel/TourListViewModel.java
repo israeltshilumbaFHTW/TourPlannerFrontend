@@ -1,9 +1,12 @@
 package at.fhtw.app.viewModel;
 
 import at.fhtw.app.backendApi.TourApi;
+import at.fhtw.app.helperServices.Listener.TourLogListener;
 import at.fhtw.app.helperServices.Observer.TourListClickObserver;
 import at.fhtw.app.helperServices.Listener.TourListListener;
+import at.fhtw.app.helperServices.Observer.TourLogObserver;
 import at.fhtw.app.model.Tour;
+import at.fhtw.app.model.TourLog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,17 +15,23 @@ import java.util.List;
 
 import static at.fhtw.app.Application.logger;
 
-public class TourListViewModel extends TourListClickObserver {
+public class TourListViewModel extends TourListClickObserver implements TourLogListener {
     private static TourListViewModel TourListViewModelInstance = null;
     private final TourApi tourApi = new TourApi();
     private final ObservableList<String> tourNameList;
     private final ObservableList<Tour> tourList;
     //Observer Pattern
     private final List<TourListListener> observers = new ArrayList<>();
+    private int selectedTourId;
+    private Tour selectedTour;
 
     private TourListViewModel() {
+        TourLogFormViewModel tourLogFormViewModel = TourLogFormViewModel.getInstance();
+        tourLogFormViewModel.registerTourLogListener(this);
         this.tourNameList = FXCollections.observableArrayList();
         this.tourList = FXCollections.observableArrayList();
+        this.selectedTourId = 0;
+        this.selectedTour = null;
     }
 
     public static TourListViewModel getInstance() {
@@ -86,6 +95,7 @@ public class TourListViewModel extends TourListClickObserver {
     }
 
     public void selectTour(int tourIndex) {
+        this.selectedTour = this.tourList.get(tourIndex);
         notifyTourClickListeners(this.tourList.get(tourIndex));
     }
 
@@ -94,5 +104,14 @@ public class TourListViewModel extends TourListClickObserver {
         tourList.forEach(
                 this::addItem
         );
+    }
+
+    public int getSelectedTourId() {
+        return this.selectedTour.getId();
+    }
+
+    @Override
+    public void onTourLogListUpdated() {
+        updateList();
     }
 }
