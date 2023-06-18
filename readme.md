@@ -66,27 +66,27 @@ Schnittstelle zwischen Frontend und Backend haben.
   - Regelmäßig lokalen Branch aktualisieren
 ### Time Tracking
 
-| Date           | Time | Comment                                |
-|----------------|------|----------------------------------------|
-|                | 1    | Set up database                        |
-|                | 1    | Docker Setup                           |
-|                | 1    | Create GitHub-Repository               |
-|                | 3    | Set up Springboot                      |
-|                | 2    | Setting up OR-Mapping Library          |
-|                | 3    | Setting up MapQuest/Static Map API     |
-|                | 1    | log4j                                  |
-|                | 6    | Create tour                            |
-|                | 1.5  | Delete tour                            |
-|                | 1    | Validate user-input                    |
-|                | 5    | Create tour-logs                       |
-|                | 2    | Delete tour-logs                       |
-|                |      | Unique feature                         |
-|                | 5    | Frontend-Design                        |
-| 17.06          | 7    | Report-generation                      |
-| 17.06 - 18.06  | 8    | Import/Export JSON Files               |
-| 18.06          | 2    | Last Unit Tests                        |
-| /              | 20   | Bugfixing, small adjustments, Protocol |
-| <b>Overall</b> | 69.5 |                                        |
+| Date               | Time | Comment                                |
+|--------------------|------|----------------------------------------|
+| 31.03              | 1    | Set up database                        |
+| 31.03              | 1    | Docker Setup                           |
+| 30.03              | 1    | Create GitHub-Repository               |
+| 31.03              | 3    | Set up Springboot                      |
+| 31.03              | 2    | Setting up OR-Mapping Library          |
+| 03.06              | 3    | Setting up MapQuest/Static Map API     |
+| 15.06              | 1    | log4j                                  |
+| 04.05 - 02.06      | 6    | Create tour                            |
+| 16.06              | 1.5  | Delete tour                            |
+| 22.05              | 1    | Validate user-input                    |
+| 04.05              | 5    | Create tour-logs                       |
+| 18.06              | 2    | Delete tour-logs                       |
+|                    |      | Unique feature                         |
+| throughout Project | 10   | Frontend-Design                        |
+| 17.06              | 7    | Report-generation                      |
+| 17.06 - 18.06      | 8    | Import/Export JSON Files               |
+| 18.06              | 2    | Last Unit Tests                        |
+| /                  | 40   | Bugfixing, small adjustments, Protocol |
+| <b>Overall</b>     | 94.5 |                                        |
 
 
 ### VCS link
