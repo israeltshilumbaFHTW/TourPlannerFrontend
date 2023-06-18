@@ -58,15 +58,16 @@ public class FormValidator {
     }
 
     public void validateInput(TourLog tourLog) throws InvalidInputException {
+        //check if its empty
+        if (tourLog.getComment() == null || tourLog.getComment().isEmpty()) {
+            throw new InvalidInputException(FormMessages.INVALID_LOG_COMMENT.getMessage());
+        }
+
         if (SPECIAL_CHARACTERS.matcher(tourLog.getComment()).find()) {
             throw new InvalidInputException(FormMessages.INVALID_LOG_COMMENT.getMessage());
         }
 
-        //check if its empty
-        if (tourLog.getComment().isEmpty()) {
-            throw new InvalidInputException(FormMessages.INVALID_LOG_COMMENT.getMessage());
-        }
-        if (tourLog.getDate().isEmpty()) {
+        if (tourLog.getDate() == null || tourLog.getDate().isEmpty()) {
             throw new InvalidInputException(FormMessages.INVALID_LOG_DATE.getMessage());
         }
         if (tourLog.getDifficulty() == null) {
