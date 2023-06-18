@@ -169,6 +169,10 @@ public class TourApi {
         return tour;
     }
 
+    public Tour deserializeJsonObject(JSONObject tourJSONObject) {
+        return null;
+    }
+
     public String postTourLog(TourLog tourLog, int tourId) {
         HttpPost request = new HttpPost(ApiEndpoints.POST_TOUR_LOGS.getEndPoint() + tourId);
         try {
@@ -201,30 +205,25 @@ public class TourApi {
         }
     }
 
-    public JSONArray getAllToursInfoJson(String info) {
+    public JSONObject getTourAsJson (int tourId) {
         HttpGet request;
-        if (info == "tours") {
-            request = new HttpGet(ApiEndpoints.GET_TOURS.getEndPoint());
-        } else if (info == "logs") {
-            request = new HttpGet(ApiEndpoints.GET_TOUR_LOGS.getEndPoint());
-        } else
-            return null;
-        JSONArray tourJSONArray = null;
+        request = new HttpGet(ApiEndpoints.GET_TOUR.getEndPoint() + tourId);
+        JSONObject tourJSONObject = null;
 
         try {
             HttpResponse response = client.execute(request);
             if (response.getStatusLine().getStatusCode() == 404)
             {
-                System.err.println("No Logs available (404)");
+                logger.error("No tour (404)");
                 return null;
             }
             String responseBody = EntityUtils.toString(response.getEntity());
 
-            tourJSONArray = new JSONArray(responseBody);
+            tourJSONObject = new JSONObject(responseBody);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return tourJSONArray;
+        return tourJSONObject;
     }
 }

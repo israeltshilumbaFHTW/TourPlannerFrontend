@@ -4,28 +4,23 @@ import at.fhtw.app.backendApi.TourApi;
 import at.fhtw.app.helperServices.Listener.TourListClickListener;
 import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
+import at.fhtw.app.view.ApplicationView;
 import at.fhtw.app.view.components.TourListViewFxComponents;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.fxml.FXML;
-
-import javafx.event.ActionEvent;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.fxml.Initializable;
-import org.json.JSONArray;
+import javafx.stage.FileChooser;
+import org.json.JSONObject;
 
 import javax.swing.text.html.ListView;
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import static at.fhtw.app.Application.logger;
 
@@ -33,8 +28,7 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
     public ListView listTours;
     private int selectedTourIndex;
 
-    @FXML
-    public void createTourDirectoryReport(ActionEvent actionEvent) {
+    public void createTourDirectoryReport() {
         String home = System.getProperty("user.home");
         String destination = home + "/Downloads/AllTours.pdf";
 
@@ -50,8 +44,6 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
                  tourList) {
                 String tourInfo = generateTourInfo(tour);
                 document.add(new Paragraph(tourInfo));
-                /* TODO: check if this works. Does getAllTourLogs(index) take the index of the tour in
-                    the tour_log table (wrong) or from the tour table (FK) (correct)*/
                 List<TourLog> tourLogList = tourApi.getAllTourLogs(tour.getId());
 
                 if (!tourLogList.isEmpty()) {
@@ -92,15 +84,13 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
         return tourLogInfo;
     }
 
-    @FXML
-    public void createSingleTourReport(ActionEvent actionEvent) {
-        //int selectedTourIndex = 1; // TODO: don't know how to do it, tried like this: 'tourNamesList.getSelectionModel().getSelectedIndex();', didn't work
+    public void createSingleTourReport() {
         Tour tour;
 
         try {
             TourApi tourApi = new TourApi();
+            // TODO: this.selectedTourIndex is always 0
             tour = tourApi.getTourWithIndex(this.selectedTourIndex);
-            // logger.debug(tour.getName()); // Wie kann er getName() verstehen, wenn ich in TourApi nirgendwo gesagt hab was der name ist, description, etc.?
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -131,42 +121,45 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
         document.add(new Paragraph("Transport Type: " + tour.getTransportType()));
     }
 
-    public void importTour(ActionEvent actionEvent) {
+    public String importTour() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        //Tour tour;
+
+        // Show the file chooser dialog
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            try {
+                // Read the content of the selected JSON file
+                String fileContent = Files.readString(selectedFile.toPath());
+                return fileContent;
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Display an error message if there was an error reading the file
+                ApplicationView applicationView = new ApplicationView();
+                applicationView.importError();
+            }
+        }
+        return null;
     }
 
-    public void importTourLogs(ActionEvent actionEvent) {
-    }
-
-    public void exportTours(ActionEvent actionEvent) {
-        TourApi tourApi = new TourApi();
-        String home = System.getProperty("user.home");
-        String destination = "/Downloads/allTours.json";
-        File file = new File(home + destination);
-        String info = "tours";
-
-        writeFile(tourApi, file, info);
-    }
-
-    public void exportTourLogs(ActionEvent actionEvent) {
-        TourApi tourApi = new TourApi();
-        String home = System.getProperty("user.home");
-        String destination = "/Downloads/allTourLogs.json";
-        File file = new File(home + destination);
-        String info = "logs";
-
-        writeFile(tourApi, file, info);
-    }
-
-    private static void writeFile(TourApi tourApi, File file, String info) {
+    public void exportTour() {
         try {
-            JSONArray jsonArray = tourApi.getAllToursInfoJson(info);
-            if (jsonArray == null) {
+            TourApi tourApi = new TourApi();
+            // TODO: this.selectedTourIndex is always 0
+            Tour tour = tourApi.getTourWithIndex(this.selectedTourIndex);
+            JSONObject jsonObject = tourApi.getTourAsJson(this.selectedTourIndex);
+            String home = System.getProperty("user.home");
+            String destination = "/Downloads/" + tour.getName() + ".json";
+
+            File file = new File(home + destination);
+            if (tour == null) {
                 logger.error("Can't export data!");
                 return;
             }
-            logger.debug(jsonArray);
+            logger.debug(jsonObject.toString());
             FileWriter fileWriter = new FileWriter(file);
-            new ObjectMapper().writeValue(fileWriter, jsonArray.toString());
+            new ObjectMapper().writeValue(fileWriter, jsonObject.toString());
             fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
