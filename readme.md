@@ -1,11 +1,13 @@
 # Frontend Dokumentation
 
 ## Use Case Diagram
+![Use Case Diagram](images/tourplanner-usecase.png)
 
 ## App Architecture
+![App Architecture](images/app-architecture.png)
 
-## Klassendiagramm
-
+## Class Diagram
+![Class Diagram](images/class-diagram.png)
 ## App
 
 ## Backend Communication
