@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <?import javafx.scene.control.SeparatorMenuItem?>
-<AnchorPane fx:controller="at.fhtw.app.viewModel.ApplicationViewModel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+<AnchorPane fx:controller="at.fhtw.app.view.ApplicationView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
             prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <MenuBar layoutX="7.0" layoutY="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
              AnchorPane.topAnchor="0.0">
@@ -21,16 +21,9 @@
                 <SeparatorMenuItem mnemonicParsing="false" />
                 <MenuItem onAction="#createSingleTourReport" text="Selected Tour"/>
             </Menu>
-            <Menu text="Import">
-                <MenuItem onAction="#importTour" text="Import Tour"/>
-                <SeparatorMenuItem mnemonicParsing="false"/>
-                <MenuItem onAction="#importTourLogs" text="Import Tour Logs"/>
-            </Menu>
-            <Menu text="Export">
-                <MenuItem onAction="#exportTours" text="Export Tour"/>
-                <SeparatorMenuItem mnemonicParsing="false"/>
-                <MenuItem onAction="#exportTourLogs" text="Export Tour Logs"/>
-            </Menu>
+            <MenuItem onAction="#importTour" text="Import a Tour"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem onAction="#exportTour" text="Export Selected Tour"/>
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close"/>
         </Menu>

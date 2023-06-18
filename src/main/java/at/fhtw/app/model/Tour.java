@@ -1,6 +1,8 @@
 package at.fhtw.app.model;
 
 import at.fhtw.app.backendApi.TourApi;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.swing.*;
 import java.time.LocalTime;
@@ -23,6 +25,7 @@ public class Tour {
     private Integer popularity;
     private Double childFriendliness;
     private List<TourLog> tourLogList;
+
     public Tour() {
     }
 
@@ -39,6 +42,37 @@ public class Tour {
         this.popularity = 0;
         this.childFriendliness = 0.00;
         this.tourLogList = new ArrayList<>();
+    }
+
+    @JsonCreator
+    public Tour(@JsonProperty("id") Integer id,
+                @JsonProperty("name") String name,
+                @JsonProperty("description") String description,
+                @JsonProperty("fromLocation") String fromLocation,
+                @JsonProperty("toLocation") String toLocation,
+                @JsonProperty("transportType") String transportType,
+                @JsonProperty("distance") Double distance,
+                @JsonProperty("estimatedTime") String estimatedTime,
+                @JsonProperty("date") String date,
+                @JsonProperty("imageUrl") String imageUrl,
+                @JsonProperty("routeInformation") String routeInformation,
+                @JsonProperty("popularity") Integer popularity,
+                @JsonProperty("childFriendliness") Double childFriendliness,
+                @JsonProperty("tourLogList") List<TourLog> tourLogList) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.transportType = transportType;
+        this.distance = distance;
+        this.estimatedTime = estimatedTime;
+        this.date = date;
+        this.imageUrl = imageUrl;
+        this.routeInformation = routeInformation;
+        this.popularity = popularity;
+        this.childFriendliness = childFriendliness;
+        this.tourLogList = tourLogList;
     }
 
     public Integer getId() {
