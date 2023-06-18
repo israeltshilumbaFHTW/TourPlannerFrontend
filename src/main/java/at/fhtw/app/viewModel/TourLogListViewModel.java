@@ -48,7 +48,7 @@ public class TourLogListViewModel extends TourLogListClickObserver {
     }
 
     public void updateList(int tourId) {
-        logger.debug("UPDATE LOG LIST");
+        logger.debug("UPDATE LOG LIST for TourId: " + tourId);
         this.tourLogList.clear();
         List<TourLog> tourLogList = tourApi.getAllTourLogs(tourId);
     }
