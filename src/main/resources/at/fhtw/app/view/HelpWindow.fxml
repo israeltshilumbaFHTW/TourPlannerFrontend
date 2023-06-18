@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/15" prefHeight="800">
+    <TitledPane text="All Tours" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            This section shows all of our Tours
+            It provides an overview of the available tours and allows you to perform actions such as creating, modifying, and deleting tours.
+        </TextArea>
+    </TitledPane>
+
+    <TitledPane text="General Tab" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            This section provides details about the Tour you selected.
+            It shows specific information related to a tour, such as its name, description, From/To, popularity, and many more.
+        </TextArea>
+    </TitledPane>
+
+    <TitledPane text="Route Tab" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            This section displays a map of the tour's route.
+            It provides a visual representation of the tour's path, allowing users to visualize the route more effectively.
+        </TextArea>
+    </TitledPane>
+
+    <TitledPane text="Logs Tab" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            This section provides additional details about the Tour.
+            It shows more specific information about the tour, including the date/time, a comment, difficulty, total time, and rating recorded during the tour.
+        </TextArea>
+    </TitledPane>
+
+    <TitledPane text="Import/Export Files" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            Under File you have many options to select from. One is the Import/Export Button.
+            You are able to select and load tour data from an external file into the application, as well as exporting tour data for sharing or backup purposes.
+        </TextArea>
+    </TitledPane>
+
+    <TitledPane text="Create Report" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            You can generate a PDF-file that will be placed in your local Downloads Folder.
+            You can decide if you want to have specific information about one tour, or a summary of all available tours.
+        </TextArea>
+    </TitledPane>
+
+    <TitledPane text="Add Tour" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            This button lets you add a new tour in the application.
+            When clicking the '+' Button, you are able to fill in information when creating a tour, such as name, description, from/to, transport-type, and route information.
+        </TextArea>
+    </TitledPane>
+
+    <TitledPane text="Delete Tour" expanded ="false">
+        <TextArea wrapText="true" editable="false">
+            If you don't want your tour to be displayed or if you made a mistake, you can delete a tour from the application.
+            After selecting a tour, press the '-' Button to delete a tour. After confirming, the tour will be deleted from the database.
+        </TextArea>
+    </TitledPane>
+</VBox>

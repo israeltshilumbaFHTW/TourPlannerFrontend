@@ -22,6 +22,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -85,6 +86,20 @@ public class ApplicationView extends TourListViewFxComponents implements Initial
         alert.setContentText("An error occurred while reading the file.");
         alert.showAndWait();
     }
+    @FXML
+    public void openHelpWindow(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HelpWindow.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            Stage helpStage = new Stage();
+            helpStage.setTitle("Application Help");
+            helpStage.setScene(scene);
+            helpStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void exportTour(ActionEvent actionEvent) {
@@ -96,4 +111,5 @@ public class ApplicationView extends TourListViewFxComponents implements Initial
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.applicationViewModel = ApplicationViewModel.getInstance();
     }
+
 }
