@@ -27,6 +27,26 @@ import static at.fhtw.app.Application.logger;
 public class ApplicationViewModel extends TourListViewFxComponents implements TourListClickListener, Initializable {
     public ListView listTours;
     private int selectedTourIndex;
+    private Tour tour;
+
+    private static ApplicationViewModel Instance = null;
+
+    public static ApplicationViewModel getInstance() {
+        if (Instance == null) {
+            Instance = new ApplicationViewModel();
+        }
+        return Instance;
+    }
+
+    private ApplicationViewModel() {
+
+        TourListViewModel tourListViewModel = TourListViewModel.getInstance();
+        tourListViewModel.registerTourClickListener(this);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
 
     public void createTourDirectoryReport() {
         String home = System.getProperty("user.home");
@@ -85,24 +105,15 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
     }
 
     public void createSingleTourReport() {
-        Tour tour;
-
-        try {
-            TourApi tourApi = new TourApi();
-            // TODO: this.selectedTourIndex is always 0
-            tour = tourApi.getTourWithIndex(this.selectedTourIndex);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
         String home = System.getProperty("user.home");
-        String destination = home + "/Downloads/" + tour.getName() + ".pdf";
+        String destination = home + "/Downloads/" + this.tour.getName() + ".pdf";
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(destination));
             document.open();
 
-            createTourDocument(document, tour);
+            createTourDocument(document, this.tour);
 
             document.close();
             logger.debug("PDF created");
@@ -147,7 +158,6 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
         try {
             TourApi tourApi = new TourApi();
             // TODO: this.selectedTourIndex is always 0
-            Tour tour = tourApi.getTourWithIndex(this.selectedTourIndex);
             JSONObject jsonObject = tourApi.getTourAsJson(this.selectedTourIndex);
             String home = System.getProperty("user.home");
             String destination = "/Downloads/" + tour.getName() + ".json";
@@ -170,11 +180,7 @@ public class ApplicationViewModel extends TourListViewFxComponents implements To
     public void changeSelection(Tour tour) {
         logger.debug("ApplicationViewModel: Tour ID: " + tour.getId());
         this.selectedTourIndex = tour.getId();
+        this.tour = tour;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        TourListViewModel tourListViewModel = TourListViewModel.getInstance();
-        tourListViewModel.registerTourClickListener(this);
-    }
 }

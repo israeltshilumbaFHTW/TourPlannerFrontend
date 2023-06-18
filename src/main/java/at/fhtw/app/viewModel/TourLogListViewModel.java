@@ -33,8 +33,6 @@ public class TourLogListViewModel extends TourLogListClickObserver {
         tourLogList.clear();
         List<TourLog> tourLogList = tourApi.getAllTourLogs(tourId);
         tourLogList.forEach(this::addItem);
-        //TODO: get Data from API directly not just the class, this makes post/get easier later on
-        //tour.getTourLogList().forEach(this::addItem);
         return this.tourLogList;
     }
 

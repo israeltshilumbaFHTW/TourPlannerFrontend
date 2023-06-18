@@ -87,7 +87,6 @@ public class TourListViewModel extends TourListClickObserver implements TourLogL
     }
 
     public Boolean deleteTour(int tourId) {
-        //Todo: change this logic
         String response = this.tourApi.deleteTour(tourId);
         updateList();
         notifyTourNameListObservers();

@@ -35,25 +35,26 @@ import javax.swing.text.html.ListView;
 
 import static at.fhtw.app.Application.logger;
 
-public class ApplicationView extends TourListViewFxComponents {
+public class ApplicationView extends TourListViewFxComponents implements Initializable {
     public ListView listTours;
     private int selectedTourIndex;
+    private ApplicationViewModel applicationViewModel;
 
     @FXML
     public void createTourDirectoryReport(ActionEvent actionEvent) {
-        ApplicationViewModel applicationViewModel = new ApplicationViewModel();
+        ApplicationViewModel applicationViewModel = ApplicationViewModel.getInstance();
         applicationViewModel.createTourDirectoryReport();
     }
 
     @FXML
     public void createSingleTourReport(ActionEvent actionEvent) {
-        ApplicationViewModel applicationViewModel = new ApplicationViewModel();
+        ApplicationViewModel applicationViewModel = ApplicationViewModel.getInstance();
         applicationViewModel.createSingleTourReport();
     }
 
     @FXML
     public void importTour(ActionEvent actionEvent) {
-        ApplicationViewModel applicationViewModel = new ApplicationViewModel();
+        ApplicationViewModel applicationViewModel = ApplicationViewModel.getInstance();
         String fileContent = applicationViewModel.importTour();
         if (fileContent == null) {
             importError();
@@ -87,7 +88,12 @@ public class ApplicationView extends TourListViewFxComponents {
 
     @FXML
     public void exportTour(ActionEvent actionEvent) {
-        ApplicationViewModel applicationViewModel = new ApplicationViewModel();
+        ApplicationViewModel applicationViewModel = ApplicationViewModel.getInstance();
         applicationViewModel.exportTour();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.applicationViewModel = ApplicationViewModel.getInstance();
     }
 }
