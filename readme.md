@@ -58,9 +58,9 @@ Schnittstelle zwischen Frontend und Backend haben.
   und Fehler effektiv zu diagnostizieren. Nächstes Mal werden wir so ein Framework früher einsetzen um von Anfang Bugs
   erkennen zu können.
 - Umfassendes Unit-Testing hat die Korrektheit unseres Codes gewährleistet und hat stark dazu beigetragen, mit
-  Sicherheit sagen zu können, dass der code funktioniert.
+  Sicherheit sagen zu können, dass der Code funktioniert.
 - Rechtzeitig beginnen und gegen Ende einer Abgabe Stress ersparen
-- Git Conflicts sind aufwendig, aber können mit geeigneten Vorbeugemaßnahmen weitgehend verhindert werden:
+- Git-Conflicts sind aufwendig, aber können mit geeigneten Vorbeugemaßnahmen weitgehend verhindert werden:
   - Commits klein und fokussiert halten
   - In separaten Branches arbeiten
   - Regelmäßig lokalen Branch aktualisieren
@@ -68,25 +68,25 @@ Schnittstelle zwischen Frontend und Backend haben.
 
 | Date               | Time | Comment                                |
 |--------------------|------|----------------------------------------|
+| 30.03              | 1    | Create GitHub-Repository               |
 | 31.03              | 1    | Set up database                        |
 | 31.03              | 1    | Docker Setup                           |
-| 30.03              | 1    | Create GitHub-Repository               |
 | 31.03              | 3    | Set up Springboot                      |
 | 31.03              | 2    | Setting up OR-Mapping Library          |
+| 04.05              | 5    | Create tour-logs                       |
+| 22.05              | 1    | Validate user-input                    |
+| 04.05 - 02.06      | 6    | Create tour                            |
 | 03.06              | 3    | Setting up MapQuest/Static Map API     |
 | 15.06              | 1    | log4j                                  |
-| 04.05 - 02.06      | 6    | Create tour                            |
 | 16.06              | 1.5  | Delete tour                            |
-| 22.05              | 1    | Validate user-input                    |
-| 04.05              | 5    | Create tour-logs                       |
+| 17.06              | 4    | Report-generation                      |
+| 17.06 - 18.06      | 6    | Import/Export JSON Files               |
 | 18.06              | 2    | Delete tour-logs                       |
-|                    |      | Unique feature                         |
+| 18.06              | 2.5  | Unique feature                         |
+| 18.06              | 2    | Finish Unit Tests                      |
 | throughout Project | 10   | Frontend-Design                        |
-| 17.06              | 7    | Report-generation                      |
-| 17.06 - 18.06      | 8    | Import/Export JSON Files               |
-| 18.06              | 2    | Last Unit Tests                        |
-| /                  | 40   | Bugfixing, small adjustments, Protocol |
-| <b>Overall</b>     | 94.5 |                                        |
+| throughout Project | 43   | Bugfixing, small adjustments, Protocol |
+| <b>Overall</b>     | 95   |                                        |
 
 
 ### VCS link

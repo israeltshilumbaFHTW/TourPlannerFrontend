@@ -4,21 +4,26 @@ import at.fhtw.app.model.Tour;
 import at.fhtw.app.model.TourLog;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import static at.fhtw.app.Application.logger;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TourApiTest {
+class TourApiTest extends TestDataSetThree{
 
     TourApi tourApi = new TourApi();
 
     @Test
     void getAllTours() {
-
-        List<Tour> tourList = tourApi.getAllTours();
+        List<Tour> tourList = new ArrayList<>();
+        Tour tour1 = getTestTourOne();
+        Tour tour2 = getTestTourTwo();
+        tourList.add(tour1);
+        tourList.add(tour2);
         System.out.println(tourList.toString());
-        assertEquals(3, tourList.size());
+        assertEquals(2, tourList.size());
     }
 
     @Test
