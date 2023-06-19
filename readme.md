@@ -49,6 +49,11 @@ die Logik besitzen getestet. So wird zum Beispiel die User Input Validation rigo
 nicht zu unerwarteten crashes kommt. Ebenfalls wurde die Api zum Frontend getestet, damit wir eine verlässliche
 Schnittstelle zwischen Frontend und Backend haben.
 
+## Unique Feature
+Als Unique Feature haben wir uns dazu entschieden eine Help-Page zu erstellen, die dem User einen Überblick bietet, um
+die Funktionen der App kennenzulernen. Besonders für neue Benutzer ist so eine Funktion in einer "echten" Applikation
+sehr hilfreich. 
+
 ### Lessons learned
 
 - Die Verwendung von Code Patterns haben die Qualität und Übersichtlichkeit dieses Projekts deutlich verbessert.
